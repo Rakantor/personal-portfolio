@@ -9,8 +9,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - personal-portfolio',
-    title: 'personal-portfolio',
+    titleTemplate: '%s | Home',
+    title: 'Manuel',
     htmlAttrs: {
       lang: 'en',
     },
@@ -59,7 +59,9 @@ export default {
       dark: true,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
+          background: '#0A192F',
+          backgroundSecondary: '#112240',
+          primary: '#64FFDA',
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
@@ -67,6 +69,27 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
         },
+        // Bert
+        /*dark: {
+          background: '#0B0C10',
+          primary: '#66FCF1',
+          accent: colors.grey.darken3,
+          secondary: colors.amber.darken3,
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3,
+        },
+        // Nuxt Default
+        dark: {
+          primary: colors.blue.darken2,
+          accent: colors.grey.darken3,
+          secondary: colors.amber.darken3,
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3,
+        },*/
       },
     },
   },

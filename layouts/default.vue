@@ -1,11 +1,12 @@
 <template>
-  <v-app dark>
+  <v-app dark :style="{ background: $vuetify.theme.themes[theme].background }">
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
-      :clipped="clipped"
       fixed
+      right
       app
+      color="backgroundSecondary"
     >
       <v-list>
         <v-list-item
@@ -22,42 +23,45 @@
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
+        <v-list-item :href="`mailto:${myEmail}`">
+          <v-list-item-action>
+            <v-icon>mdi-email</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Contact</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
+    <v-app-bar fixed flat app color="transparent">
+      <v-avatar size="48" class="mr-3">
+        <img
+          src="@/assets/avatar_transparent.png"
+          alt="Manuel"
+        >
+      </v-avatar>
+      <v-toolbar-title class="text-subtitle-1" v-text="myName" />
       <v-spacer />
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
+      <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" @click.stop="drawer = !drawer" />
+      <div v-else>
+        <v-btn plain to="/">Home</v-btn>
+        <v-btn plain to="/bio">About</v-btn>
+        <v-btn plain to="/portfolio">Work</v-btn>
+        <v-btn plain :href="`mailto:${myEmail}`">Contact</v-btn>
+      </div>
     </v-app-bar>
     <v-main>
       <v-container>
         <Nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light> mdi-repeat </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+    <v-footer app absolute color="transparent">
+      <v-row justify="center" no-gutters>
+        <v-col cols="12" class="text-center">
+          <v-divider></v-divider>
+          <span class="text-caption">&copy; {{ new Date().getFullYear() }} | {{ myName }}</span>
+        </v-col>
+      </v-row>
     </v-footer>
   </v-app>
 </template>
@@ -67,26 +71,33 @@ export default {
   name: 'DefaultLayout',
   data() {
     return {
-      clipped: false,
       drawer: false,
-      fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
+          icon: 'mdi-home',
+          title: 'Home',
           to: '/',
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
+          icon: 'mdi-text-account',
+          title: 'About',
+          to: '/bio',
         },
+        {
+          icon: 'mdi-briefcase',
+          title: 'Work',
+          to: '/portfolio',
+        }
       ],
       miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js',
+      myName: 'Manuel Vogel',
+      myEmail: 'rakantor.dev@gmail.com'
     }
   },
+  computed: {
+    theme () {
+      return (this.$vuetify.theme.dark) ? 'dark' : 'light'
+    }
+  }
 }
 </script>
