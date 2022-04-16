@@ -10,11 +10,21 @@
         full-stack web development in 2018.
       </span>
     </v-col>
+    <v-col cols="12">
+      <ul>
+        <li v-for="(value, index) in languages" :key="index">{{ value }}</li>
+      </ul>
+    </v-col>
   </v-row>
 </template>
 
 <script>
 export default {
-  name: 'BioPage'
+  name: 'BioPage',
+  data () {
+    return {
+      languages: ['Java', 'Android']
+    }
+  }
 }
 </script>

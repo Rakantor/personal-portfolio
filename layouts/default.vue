@@ -23,18 +23,17 @@
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
-        <v-list-item :href="`mailto:${myEmail}`">
-          <v-list-item-action>
-            <v-icon>mdi-email</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Contact</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
       </v-list>
+      <template #append>
+        <div class="pa-2">
+          <v-btn block outlined color="primary" :href="`mailto:${myEmail}`">
+            Contact
+          </v-btn>
+        </div>
+      </template>
     </v-navigation-drawer>
     <v-app-bar fixed flat app color="transparent">
-      <v-avatar size="48" class="mr-3">
+      <v-avatar size="48" color="backgroundSecondary" class="mr-3" style="cursor: pointer" @click.native="$router.push('/')">
         <img
           src="@/assets/avatar_transparent.png"
           alt="Manuel"
@@ -44,14 +43,14 @@
       <v-spacer />
       <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" @click.stop="drawer = !drawer" />
       <div v-else>
-        <v-btn plain to="/">Home</v-btn>
-        <v-btn plain to="/bio">About</v-btn>
-        <v-btn plain to="/portfolio">Work</v-btn>
-        <v-btn plain :href="`mailto:${myEmail}`">Contact</v-btn>
+        <v-btn plain active-class="link-active" to="/">Home</v-btn>
+        <v-btn plain active-class="link-active" to="/bio">About</v-btn>
+        <v-btn plain active-class="link-active" to="/portfolio">Work</v-btn>
+        <v-btn plain active-class="link-active" :href="`mailto:${myEmail}`">Contact</v-btn>
       </div>
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container class="my-16">
         <Nuxt />
       </v-container>
     </v-main>
@@ -90,7 +89,7 @@ export default {
         }
       ],
       miniVariant: false,
-      myName: 'Manuel Vogel',
+      myName: 'Rakantor',
       myEmail: 'rakantor.dev@gmail.com'
     }
   },
@@ -101,3 +100,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.link-active {
+  color: var(--v-primary-base);
+}
+.v-btn--plain:hover {
+  color: var(--v-primary-base);
+}
+</style>
