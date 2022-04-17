@@ -7,26 +7,33 @@
       right
       app
       color="backgroundSecondary"
+      
     >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
+      <v-list nav>
+        <v-list-item-group
+          v-model="selectedItem"
+          color="primary"
         >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
+          <v-list-item
+            v-for="(item, i) in items"
+            :key="i"
+            :to="item.to"
+            router
+            exact
+          >
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title" />
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
       </v-list>
       <template #append>
         <div class="pa-2">
-          <v-btn block outlined color="primary" :href="`mailto:${myEmail}`">
+          <v-btn block outlined color="primary" :href="`mailto:${myName}<${myEmail}>`">
+            <v-icon left>mdi-email-outline</v-icon>
             Contact
           </v-btn>
         </div>
@@ -46,7 +53,7 @@
         <v-btn plain active-class="link-active" to="/">Home</v-btn>
         <v-btn plain active-class="link-active" to="/bio">About</v-btn>
         <v-btn plain active-class="link-active" to="/portfolio">Work</v-btn>
-        <v-btn plain active-class="link-active" :href="`mailto:${myEmail}`">Contact</v-btn>
+        <v-btn plain active-class="link-active" :href="`mailto:${myName}<${myEmail}>`">Contact</v-btn>
       </div>
     </v-app-bar>
     <v-main>
@@ -68,31 +75,30 @@
 <script>
 export default {
   name: 'DefaultLayout',
-  data() {
-    return {
-      drawer: false,
-      items: [
-        {
-          icon: 'mdi-home',
-          title: 'Home',
-          to: '/',
-        },
-        {
-          icon: 'mdi-text-account',
-          title: 'About',
-          to: '/bio',
-        },
-        {
-          icon: 'mdi-briefcase',
-          title: 'Work',
-          to: '/portfolio',
-        }
-      ],
-      miniVariant: false,
-      myName: 'Rakantor',
-      myEmail: 'rakantor.dev@gmail.com'
-    }
-  },
+  data: () => ({
+    drawer: false,
+    miniVariant: false,
+    selectedItem: 0,
+    myName: 'Manuel',
+    myEmail: 'rakantor.dev@gmail.com',
+    items: [
+      {
+        icon: 'mdi-home',
+        title: 'Home',
+        to: '/',
+      },
+      {
+        icon: 'mdi-text-account',
+        title: 'About',
+        to: '/bio',
+      },
+      {
+        icon: 'mdi-briefcase',
+        title: 'Work',
+        to: '/portfolio',
+      }
+    ]
+  }),
   computed: {
     theme () {
       return (this.$vuetify.theme.dark) ? 'dark' : 'light'
@@ -105,7 +111,14 @@ export default {
 .link-active {
   color: var(--v-primary-base);
 }
+.v-btn--plain >>> .v-btn__content {
+  color: inherit;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
 .v-btn--plain:hover {
+  color: var(--v-primary-base);
+}
+.v-btn--plain:focus {
   color: var(--v-primary-base);
 }
 </style>
