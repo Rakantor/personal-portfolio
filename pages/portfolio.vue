@@ -5,6 +5,10 @@
     </v-col>
     <v-col v-for="(project, index) of projects" :key="index" cols="12" md="6">
       <v-card color="backgroundSecondary">
+        <v-img
+          height="250"
+          src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+        ></v-img>
         <v-card-title>
           <span v-if="project.projectUrl">
             <a :href="`https://${project.projectUrl}`" target="_blank" class="link">{{ project.title }}</a>
@@ -12,10 +16,6 @@
           <span v-else>{{ project.title }}</span>
         </v-card-title>
         <v-card-subtitle>{{ project.subtitle }}</v-card-subtitle>
-        <v-img
-          height="250"
-          src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-        ></v-img>
         <v-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sapien justo, vehicula at rutrum sed, maximus nec ante. Fusce maximus nulla vel elit scelerisque, eget eleifend neque tincidunt. Cras malesuada ultrices massa ac tempor. Donec faucibus orci eu arcu condimentum, quis congue neque sollicitudin. Etiam vel consequat lectus. Cras vel metus id odio ultrices tincidunt. Sed vitae neque non eros molestie convallis eget non ligula. Nam ullamcorper dolor risus, in dapibus sapien pellentesque in. Praesent dapibus justo eu egestas sagittis. Nam vel ipsum mauris. In hendrerit odio a magna viverra, vehicula vehicula urna tempor. Vestibulum vel vestibulum lorem. Integer luctus nulla libero, egestas efficitur ex sagittis sed. In fermentum cursus eleifend.</v-card-text>
         <v-card-text class="text-caption">
           {{ project.description }}
@@ -63,7 +63,14 @@ export default {
       {
         title: 'IU Gamer App',
         subtitle: 'Android app',
-        description: 'Android (Java) Firebase'
+        description: 'Android (Java) Firebase',
+        repoUrl: 'github.com/Rakantor/iubh-gamer-app',
+      },
+      {
+        title: 'IU Quiz App',
+        subtitle: 'Nuxt.js Web App',
+        description: 'Android (Java) Firebase',
+        repoUrl: 'github.com/Rakantor/iu-quiz-app',
       },
       {
         title: 'Menacing Blue',
