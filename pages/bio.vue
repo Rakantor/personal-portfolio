@@ -11,29 +11,19 @@
       </span>
     </v-col>
     <v-col v-for="set, ind in sets" :key="ind" cols="12">
-      <v-tooltip v-for="(value, index) in set" :key="index" bottom>
-        <template #activator="{ on, attrs }">
+      <v-tooltip v-for="(value, index) in set" :key="index" location="bottom" :text="value.title">
+        <template #activator="{ props }">
           <v-btn
-            :small="value.level == 1"
-            :large="value.level == 2"
-            :x-large="value.level >= 3"
-            icon
+            variant="text"
+            :size="getButtonSize(value.level)"
+            :icon="value.icon"
+            color="primary"
             class="mx-1"
             :href="`https://${value.url}`"
             target="_blank"
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon 
-              color="primary"
-              :large="value.level == 2"
-              :x-large="value.level >= 3"
-            >
-              {{ value.icon }}
-            </v-icon>
-          </v-btn>
+            v-bind="props"
+          />
         </template>
-        <span>{{ value.title }}</span>
       </v-tooltip>
     </v-col>
   </v-row>
@@ -87,6 +77,15 @@ export default {
     },
     skills () {
       return [...this.languages, ...this.frameworks, ...this.tech, ...this.os]
+    }
+  },
+  methods: {
+    getButtonSize (level) {
+      switch (level) {
+        case 1: return 'small'
+        case 2: return 'large'
+        default: return 'x-large'
+      }
     }
   }
 }

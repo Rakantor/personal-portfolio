@@ -1,5 +1,5 @@
 <template>
-  <v-app dark :style="{ background: $vuetify.theme.themes[theme].background }">
+  <v-app dark class="v-app-bg">
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -9,46 +9,38 @@
       color="backgroundSecondary"
       
     >
-      <v-list nav>
-        <v-list-item-group
-          v-model="selectedItem"
-          color="primary"
+      <v-list nav :lines="false">
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          :to="item.to"
+          active-color="primary"
+          router
+          exact
         >
-          <v-list-item
-            v-for="(item, i) in items"
-            :key="i"
-            :to="item.to"
-            router
-            exact
-          >
-            <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title v-text="item.title" />
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
+          <template v-slot:prepend>
+            <v-icon :icon="item.icon"></v-icon>
+          </template>
+          <v-list-item-title v-text="item.title" />
+        </v-list-item>
       </v-list>
       <template #append>
         <div class="pa-2">
-          <v-btn block outlined color="primary" :href="`mailto:${myName}<${myEmail}>`">
-            <v-icon left>mdi-email-outline</v-icon>
+          <v-btn block outlined color="primary" prepend-icon="mdi-email-outline" :href="`mailto:${myName}<${myEmail}>`">
             Contact
           </v-btn>
         </div>
       </template>
     </v-navigation-drawer>
     <v-app-bar fixed flat app color="transparent">
-      <v-avatar size="48" color="backgroundSecondary" class="mr-3" style="cursor: pointer" @click.native="$router.push('/')">
-        <img
-          src="@/assets/avatar_transparent.png"
-          alt="Manuel"
-        >
-      </v-avatar>
-      <v-toolbar-title class="text-subtitle-1" v-text="myName" />
+      <template v-slot:prepend>
+        <v-avatar size="48" color="backgroundSecondary" style="cursor: pointer" @click.native="$router.push('/')">
+          <img src="~/assets/avatar_transparent.png" width="55" />
+        </v-avatar>
+      </template>
+      <v-app-bar-title class="text-subtitle-1" v-text="myName" />
       <v-spacer />
-      <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon v-if="smAndDown" @click.stop="drawer = !drawer" />
       <div v-else>
         <v-btn plain active-class="link-active" to="/">Home</v-btn>
         <v-btn plain active-class="link-active" to="/bio">About</v-btn>
@@ -58,7 +50,7 @@
     </v-app-bar>
     <v-main>
       <v-container class="my-16">
-        <Nuxt />
+        <slot />
       </v-container>
     </v-main>
     <v-footer app absolute color="transparent">
@@ -73,8 +65,14 @@
 </template>
 
 <script>
+import { useDisplay } from 'vuetify'
+
 export default {
   name: 'DefaultLayout',
+  setup () {
+    const { smAndDown } = useDisplay()
+    return { smAndDown }
+  },
   data: () => ({
     drawer: false,
     miniVariant: false,
@@ -98,20 +96,18 @@ export default {
         to: '/portfolio',
       }
     ]
-  }),
-  computed: {
-    theme () {
-      return (this.$vuetify.theme.dark) ? 'dark' : 'light'
-    }
-  }
+  })
 }
 </script>
 
 <style scoped>
+.v-app-bg {
+  background: rgb(var(--v-theme-background))
+}
 .link-active {
   color: var(--v-primary-base);
 }
-.v-btn--plain >>> .v-btn__content {
+.v-btn--plain:deep(.v-btn__content) {
   color: inherit;
   transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -6,8 +6,8 @@
     <v-col v-for="(project, index) of projects" :key="index" cols="12" md="6">
       <v-card color="backgroundSecondary">
         <v-img
-          height="250"
           src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+          cover
         ></v-img>
         <v-card-title>
           <span v-if="project.projectUrl">
@@ -23,20 +23,16 @@
         <v-card-actions>
           <v-btn
             v-if="project.repoUrl"
-            icon
+            icon="mdi-github"
             :href="`https://${project.repoUrl}`"
             target="_blank"
-          >
-            <v-icon>mdi-github</v-icon>
-          </v-btn>
+          />
           <v-btn
             v-if="project.projectUrl"
-            icon
+            icon="mdi-open-in-new"
             :href="`https://${project.projectUrl}`"
             target="_blank"
-          >
-            <v-icon>mdi-open-in-new</v-icon>
-          </v-btn>
+          />
         </v-card-actions>
       </v-card>
     </v-col>
@@ -71,6 +67,7 @@ export default {
         subtitle: 'Nuxt.js Web App',
         description: 'Android (Java) Firebase',
         repoUrl: 'github.com/Rakantor/iu-quiz-app',
+        projectUrl: 'iu-quiz-app.web.app'
       },
       {
         title: 'Menacing Blue',
