@@ -2,6 +2,8 @@ import { createVuetify, ThemeDefinition  } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import '@mdi/font/css/materialdesignicons.css'
+// @ts-expect-error Missing type definitions
+import colors from 'vuetify/lib/util/colors'
 
 const myCustomDarkTheme: ThemeDefinition = {
   dark: true,
@@ -9,12 +11,12 @@ const myCustomDarkTheme: ThemeDefinition = {
     background: '#0A192F',
     backgroundSecondary: '#112240',
     primary: '#64FFDA',
-    /* accent: colors.grey.darken3,
+    accent: colors.grey.darken3,
     secondary: colors.amber.darken3,
     info: colors.teal.lighten1,
     warning: colors.amber.base,
     error: colors.deepOrange.accent4,
-    success: colors.green.accent3 */
+    success: colors.green.accent3
   }
   // Bert
   /* dark: {
