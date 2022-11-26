@@ -26,7 +26,13 @@
       </v-list>
       <template #append>
         <div class="pa-2">
-          <v-btn block outlined color="primary" prepend-icon="mdi-email-outline" :href="`mailto:${myName}<${myEmail}>`">
+          <v-btn
+            block
+            outlined
+            color="primary"
+            prepend-icon="mdi-email-outline"
+            :href="`mailto:${myName}<${myEmail}>`"
+          >
             Contact
           </v-btn>
         </div>
@@ -34,7 +40,12 @@
     </v-navigation-drawer>
     <v-app-bar fixed flat app color="transparent">
       <template v-slot:prepend>
-        <v-avatar size="48" color="backgroundSecondary" style="cursor: pointer" @click.native="$router.push('/')">
+        <v-avatar
+          size="48"
+          color="backgroundSecondary"
+          style="cursor: pointer"
+          @click.native="$router.push('/')"
+        >
           <img src="~/assets/avatar_transparent.png" width="55" />
         </v-avatar>
       </template>
@@ -57,7 +68,9 @@
       <v-row justify="center" no-gutters>
         <v-col cols="12" class="text-center">
           <v-divider></v-divider>
-          <span class="text-caption">&copy; {{ new Date().getFullYear() }} | {{ myName }}</span>
+          <span class="text-caption">
+            &copy; {{ new Date().getFullYear() }} | {{ myName }}
+          </span>
         </v-col>
       </v-row>
     </v-footer>
