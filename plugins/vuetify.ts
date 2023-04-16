@@ -48,7 +48,6 @@ export default defineNuxtPlugin(nuxtApp => {
     theme: {
       // customVariables: ['~/assets/variables.scss'],
       defaultTheme: 'myCustomDarkTheme',
-      // options: { customProperties: true },
       themes: {
         myCustomDarkTheme,
       }
