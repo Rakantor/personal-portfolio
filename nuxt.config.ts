@@ -24,8 +24,8 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      titleTemplate: '%s | Home',
-      title: 'Manuel',
+      // titleTemplate: '%s | Home',
+      title: 'Manuel Veigel',
       htmlAttrs: {
         lang: 'en',
       },
