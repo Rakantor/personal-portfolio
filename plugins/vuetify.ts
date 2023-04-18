@@ -2,6 +2,8 @@ import { createVuetify, ThemeDefinition  } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import '@mdi/font/css/materialdesignicons.css'
+import { mdi } from 'vuetify/iconsets/mdi'
+import { brands } from '~/iconsets/brands'
 // @ts-expect-error Missing type definitions
 import colors from 'vuetify/lib/util/colors'
 
@@ -51,8 +53,18 @@ export default defineNuxtPlugin(nuxtApp => {
       themes: {
         myCustomDarkTheme,
       }
+    },
+    icons: {
+      defaultSet: 'mdi',
+      sets: {
+        mdi,
+        brands
+      }
     }
   })
 
   nuxtApp.vueApp.use(vuetify)
+
+  // Define global variables
+  nuxtApp.provide('myName', 'Manuel Veigel')
 })
