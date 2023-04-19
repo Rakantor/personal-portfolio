@@ -4,7 +4,10 @@ import vuetify from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   ssr: false,
 
-  css: ['vuetify/styles'],
+  css: [
+    'vuetify/styles',
+    '~/assets/variables.scss'
+  ],
 
   vite: {
     ssr: {
@@ -14,12 +17,6 @@ export default defineNuxtConfig({
 
   build: {
     transpile: ['vuetify']
-  },
-
-  publicRuntimeConfig: {
-    axios: {
-      baseURL: '/',
-    },
   },
 
   app: {
@@ -44,6 +41,10 @@ export default defineNuxtConfig({
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    [
+      '@nuxtjs/i18n',
+      { vueI18n: './i18n.config.ts' }
+    ],
     // https://go.nuxtjs.dev/axios
     // ['@nuxtjs/axios', { proxyHeaders: false }],
     // this adds the vuetify vite plugin
