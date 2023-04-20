@@ -1,5 +1,5 @@
 <template>
-  <v-app dark class="v-app-bg">
+  <v-app class="v-app-bg">
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -31,14 +31,14 @@
             outlined
             color="primary"
             prepend-icon="mdi-email-outline"
-            :href="`mailto:${myName}<${myEmail}>`"
+            :href="`mailto:<${$myEmail}>`"
           >
             Contact
           </v-btn>
         </div>
       </template>
     </v-navigation-drawer>
-    <v-app-bar fixed flat app color="transparent">
+    <v-app-bar app color="background" class="px-md-10 py-md-4">
       <template v-slot:prepend>
         <v-avatar
           size="48"
@@ -49,15 +49,18 @@
           <img src="~/assets/avatar_transparent.png" width="55" />
         </v-avatar>
       </template>
-      <v-app-bar-title class="text-subtitle-1" v-text="myName" />
+      <!-- v-app-bar-title class="text-subtitle-1" v-text="$myName" /-->
       <v-spacer />
-      <v-app-bar-nav-icon v-if="smAndDown" @click.stop="drawer = !drawer" />
-      <div v-else>
-        <v-btn plain active-class="link-active" to="/">Home</v-btn>
-        <v-btn plain active-class="link-active" to="/bio">About</v-btn>
-        <v-btn plain active-class="link-active" to="/portfolio">Work</v-btn>
-        <v-btn plain active-class="link-active" :href="`mailto:${myName}<${myEmail}>`">Contact</v-btn>
-      </div>
+      <v-app-bar-nav-icon
+        v-if="smAndDown"
+        @click.stop="drawer = !drawer"
+      />
+      <v-btn-toggle v-else :model-value="0" mandatory variant="plain" selected-class="link-active">
+        <v-btn :ripple="false" to="/">Home</v-btn>
+        <v-btn :ripple="false" to="/bio">About</v-btn>
+        <v-btn :ripple="false" to="/portfolio">Work</v-btn>
+        <v-btn :ripple="false" :href="`mailto:<${$myEmail}>`">Contact</v-btn>
+      </v-btn-toggle>
     </v-app-bar>
     <v-main>
       <v-container class="my-16">
@@ -67,9 +70,8 @@
     <v-footer app absolute color="transparent">
       <v-row justify="center" no-gutters>
         <v-col cols="12" class="text-center">
-          <v-divider></v-divider>
           <span class="text-caption">
-            &copy; {{ new Date().getFullYear() }} | {{ myName }}
+            &copy; {{ new Date().getFullYear() }} {{ $myName }}
           </span>
         </v-col>
       </v-row>
@@ -90,8 +92,7 @@ export default {
     drawer: false,
     miniVariant: false,
     selectedItem: 0,
-    myName: 'Manuel',
-    myEmail: 'rakantor.dev@gmail.com',
+    test: 0,
     items: [
       {
         icon: 'mdi-home',
@@ -113,21 +114,24 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .v-app-bg {
   background: rgb(var(--v-theme-background))
 }
 .link-active {
-  color: var(--v-primary-base);
+  color: rgb(var(--v-theme-primary)) !important;
 }
-.v-btn--plain:deep(.v-btn__content) {
-  color: inherit;
+.v-btn--variant-plain {
+  color: rgb(var(--v-theme-on-background));
   transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.v-btn--plain:hover {
-  color: var(--v-primary-base);
-}
-.v-btn--plain:focus {
-  color: var(--v-primary-base);
+  opacity: 0.87;
+
+  &:hover {
+    color: rgb(var(--v-theme-primary));
+  }
+
+  &:focus {
+    color: rgb(var(--v-theme-primary));
+  }
 }
 </style>

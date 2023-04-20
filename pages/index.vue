@@ -1,13 +1,14 @@
 <template>
   <v-row justify="center">
     <v-col cols="12">
-      <span class="text-h3">Hi, my name is Manuel.</span>
+      <span class="text-h3">{{ $t('greeting') }}</span>
     </v-col>
-    <v-col cols="12">
-      <span class="text-h6">
+    <v-col cols="12" class="my-6">
+      <p class="text-h6" style="max-width: 600px;">
         I'm a Software Developer based in Vienna, Austria.<br/>
-        I make all kind of applications.
-      </span>
+        I develop various types of applications.
+        Explore my portfolio to view a showcase of my projects ✌️
+      </p>
     </v-col>
     <v-col cols="12">
       <v-btn
@@ -15,7 +16,7 @@
         outlined
         color="primary"
         prepend-icon="mdi-email-outline"
-        href="mailto:rakantor.dev@gmail.com"
+        :href="`mailto:<${$myEmail}>`"
       >
         Contact me
       </v-btn>

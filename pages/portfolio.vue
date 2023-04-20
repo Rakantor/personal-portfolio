@@ -3,37 +3,58 @@
     <v-col cols="12">
       <span class="text-h5 font-weight-medium">Some of my projects</span>
     </v-col>
-    <v-col v-for="(project, index) of projects" :key="index" cols="12" md="6">
+    <v-col v-for="(project, index) of projects" :key="index" cols="12" lg="4" md="6">
       <v-card color="backgroundSecondary">
-        <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-          cover
-        ></v-img>
-        <v-card-title>
-          <span v-if="project.projectUrl">
-            <a :href="`https://${project.projectUrl}`" target="_blank" class="link">{{ project.title }}</a>
-          </span>
-          <span v-else>{{ project.title }}</span>
-        </v-card-title>
-        <v-card-subtitle>{{ project.subtitle }}</v-card-subtitle>
-        <v-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sapien justo, vehicula at rutrum sed, maximus nec ante. Fusce maximus nulla vel elit scelerisque, eget eleifend neque tincidunt. Cras malesuada ultrices massa ac tempor. Donec faucibus orci eu arcu condimentum, quis congue neque sollicitudin. Etiam vel consequat lectus. Cras vel metus id odio ultrices tincidunt. Sed vitae neque non eros molestie convallis eget non ligula. Nam ullamcorper dolor risus, in dapibus sapien pellentesque in. Praesent dapibus justo eu egestas sagittis. Nam vel ipsum mauris. In hendrerit odio a magna viverra, vehicula vehicula urna tempor. Vestibulum vel vestibulum lorem. Integer luctus nulla libero, egestas efficitur ex sagittis sed. In fermentum cursus eleifend.</v-card-text>
-        <v-card-text class="text-caption">
-          {{ project.description }}
+        <v-carousel
+          show-arrows="hover"
+          hide-delimiter-background
+          height="auto"
+        >
+          <v-carousel-item v-for="image of project.images" :key="image"
+            :src="`${cdn}${image}`"
+            :aspect-ratio="1/1"
+          ></v-carousel-item>
+        </v-carousel>
+        <v-card-item>
+          <v-card-title class="d-flex">
+            <span>{{ project.title }}</span>
+            <v-spacer></v-spacer>
+            <v-btn
+              v-if="project.repoUrl"
+              variant="text"
+              icon="mdi-github"
+              density="comfortable"
+              color="on-backgroundSecondary"
+              :href="`https://${project.repoUrl}`"
+              target="_blank"
+              class="link"
+            />
+            <v-btn
+              v-if="project.projectUrl"
+              variant="text"
+              icon="mdi-open-in-new"
+              density="comfortable"
+              color="on-backgroundSecondary"
+              :href="`https://${project.projectUrl}`"
+              target="_blank"
+              class="link"
+            />
+          </v-card-title>
+          <v-card-subtitle>{{ project.subtitle }}</v-card-subtitle>
+        </v-card-item>
+        <v-card-text>{{ $t(project.description) }}</v-card-text>
+        <v-card-text class="d-flex flex-row flex-wrap justify-start">
+          <a v-for="t of project.tech" :key="tech[t].title"
+            :href="`https://${tech[t].projectUrl}`"
+            target="_blank"
+          >
+            <img
+              :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].iconUrl}`"
+              :height="20"
+              class="ma-1"
+            />
+          </a>
         </v-card-text>
-        <v-card-actions>
-          <v-btn
-            v-if="project.repoUrl"
-            icon="mdi-github"
-            :href="`https://${project.repoUrl}`"
-            target="_blank"
-          />
-          <v-btn
-            v-if="project.projectUrl"
-            icon="mdi-open-in-new"
-            :href="`https://${project.projectUrl}`"
-            target="_blank"
-          />
-        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
@@ -43,56 +64,152 @@
 export default {
   name: 'PortfolioComponent',
   data: () => ({
+    cdn: 'https://d29l6egdxvgg9c.cloudfront.net/',
     projects: [
-      {
-        title: 'Torii SRS 2.0',
+    {
+        title: 'Torii SRS (v2 Beta)',
         subtitle: 'Progressive Web App',
-        description: 'Vue.js Vuetify.js Chart.js MySQL PHP AWS Azure Watson Heroku',
-        projectUrl: 'beta.torii-srs.com'
+        description: 'toriiSRSv2',
+        tech: ['vue2', 'vuetify2', 'mysql', 'php', 'aws', 'azure', 'watson', 'heroku'],
+        projectUrl: 'beta.torii-srs.com',
+        images: [
+          'torii-v2-01.jpg', 'torii-v2-03.jpg', 'torii-v2-04.jpg',
+          'torii-v2-05.jpg', 'torii-v2-06.jpg', 'torii-v2-07.jpg',
+          'torii-v2-08.jpg', 'torii-v2-09.jpg', 'torii-v2-10.jpg'
+        ]
       },
       {
-        title: 'Torii SRS 1.0',
-        subtitle: 'Cross-platform desktop and mobile app',
-        description: 'Java libGDX MySQL PHP AWS WordPress',
-        projectUrl: 'torii-srs.com'
+        title: 'Torii SRS (v1)',
+        subtitle: 'Cross-platform app',
+        description: 'toriiSRSv1',
+        tech: ['java', 'libgdx', 'mysql', 'php', 'aws', 'wordpress'],
+        projectUrl: 'torii-srs.com',
+        images: [
+          'torii-v1-1.jpg', 'torii-v1-2.png', 'torii-v1-3.png',
+          'torii-v1-4.png', 'torii-v1-5.png', 'torii-v1-6.png'
+        ]
+      },
+      {
+        title: 'IU Quiz App',
+        subtitle: 'Web App',
+        description: 'iuQuizApp',
+        tech: ['nuxt2', 'vuetify2', 'firebase'],
+        repoUrl: 'github.com/Rakantor/iu-quiz-app',
+        projectUrl: 'iu-quiz-app.web.app',
+        images: ['torii-v1-1.jpg']
+      },
+      {
+        title: 'Menacing Blue',
+        subtitle: 'Cross-platform app',
+        description: 'pmb',
+        tech: ['java', 'libgdx'],
+        images: ['pmb-6.png', 'pmb-1.png', 'pmb-2.png', 'pmb-3.png', 'pmb-4.png', 'pmb-5.png']
+      },
+      {
+        title: 'Personal Website',
+        subtitle: 'The thing you\'re looking at right now',
+        description: '',
+        tech: ['nuxt3', 'vuetify3', 'ghpages'],
+        repoUrl: 'github.com/Rakantor/personal-portfolio',
+        projectUrl: 'mave.dev',
+        images: ['torii-v1-1.jpg']
       },
       {
         title: 'IU Gamer App',
         subtitle: 'Android app',
-        description: 'Android (Java) Firebase',
+        description: '',
+        tech: ['android', 'firebase'],
         repoUrl: 'github.com/Rakantor/iubh-gamer-app',
-      },
-      {
-        title: 'IU Quiz App',
-        subtitle: 'Nuxt.js Web App',
-        description: 'Android (Java) Firebase',
-        repoUrl: 'github.com/Rakantor/iu-quiz-app',
-        projectUrl: 'iu-quiz-app.web.app'
-      },
-      {
-        title: 'Menacing Blue',
-        subtitle: '2000s Pokémon inspired Cross-platform 2D game',
-        description: 'Java libGDX'
-      },
-      {
-        title: 'Personal Portfolio Website',
-        subtitle: 'The thing you\'re looking at right now',
-        description: 'Nuxt.js Vuetify.js GitHub-Pages',
-        repoUrl: 'github.com/Rakantor/personal-portfolio',
-        projectUrl: 'mave.dev'
+        images: []
       }
-    ]
+    ],
+    tech: {
+      android: {
+        title: 'Android',
+        iconUrl: 'https://cdn.simpleicons.org/android&label&color=3DDC84',
+        projectUrl: 'android.com'
+      },
+      aws: {
+        title: 'AWS',
+        iconUrl: 'https://cdn.simpleicons.org/amazonaws&label&color=232F3E',
+        projectUrl: 'nuxt.com'
+      },
+      azure: {
+        title: 'Azure',
+        iconUrl: 'https://cdn.simpleicons.org/microsoftazure&label&color=0078D4',
+        projectUrl: 'nuxt.com'
+      },
+      firebase: {
+        title: 'Firebase',
+        iconUrl: 'https://cdn.simpleicons.org/firebase&label&color=FFCA28',
+        projectUrl: 'nuxt.com'
+      },
+      ghpages: {
+        title: 'GH Pages',
+        iconUrl: 'https://cdn.simpleicons.org/github&label&color=222222',
+        projectUrl: 'nuxt.com'
+      },
+      heroku: {
+        title: 'Heroku',
+        iconUrl: 'https://cdn.simpleicons.org/heroku&label&color=430098',
+        projectUrl: 'nuxt.com'
+      },
+      java: {
+        title: 'Java',
+        iconUrl: 'https://cdn.simpleicons.org/coffeescript&label&color=FF7800',
+        projectUrl: 'nuxt.com'
+      },
+      libgdx: {
+        title: 'libGDX',
+        iconUrl: 'https://cdn.simpleicons.org/youtubegaming&label&color=990000',
+        projectUrl: 'nuxtjs.org'
+      },
+      mysql: {
+        title: 'MySQL',
+        iconUrl: 'https://cdn.simpleicons.org/mysql&label&color=4479A1',
+        projectUrl: 'nuxtjs.org'
+      },
+      nuxt2: {
+        title: 'Nuxt 2',
+        iconUrl: 'https://cdn.simpleicons.org/nuxtdotjs&label&color=00DC82',
+        projectUrl: 'nuxtjs.org'
+      },
+      nuxt3: {
+        title: 'Nuxt 3',
+        iconUrl: 'https://cdn.simpleicons.org/nuxtdotjs&label&color=00DC82',
+        projectUrl: 'nuxt.com'
+      },
+      php: {
+        title: 'PHP',
+        iconUrl: 'https://cdn.simpleicons.org/php&label&color=777BB4',
+        projectUrl: 'nuxt.com'
+      },
+      vue2: {
+        title: 'Vue 2',
+        iconUrl: 'https://cdn.simpleicons.org/vuedotjs&label&color=4FC08D',
+        projectUrl: 'nuxt.com'
+      },
+      vuetify2: {
+        title: 'Vuetify 2',
+        iconUrl: 'https://cdn.simpleicons.org/vuetify&label&color=1867C0',
+        projectUrl: 'nuxt.com'
+      },
+      vuetify3: {
+        title: 'Vuetify 3',
+        iconUrl: 'https://cdn.simpleicons.org/vuetify&label&color=1867C0',
+        projectUrl: 'nuxt.com'
+      },
+      watson: {
+        title: 'Watson',
+        iconUrl: 'https://cdn.simpleicons.org/ibmwatson&label&color=BE95FF',
+        projectUrl: 'nuxt.com'
+      },
+      wordpress: {
+        title: 'WordPress',
+        iconUrl: 'https://cdn.simpleicons.org/wordpress&label&color=21759B',
+        projectUrl: 'nuxt.com'
+      }
+    }
   })
 }
 </script>
-
-<style scoped>
-.link {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.link:hover {
-  color: var(--v-primary-base);
-}
-</style>
