@@ -3,6 +3,11 @@
 // The variables you want to modify
 // $font-size-root: 20px;
 
+$font-inter: 'Inter', sans-serif;
+@use 'vuetify' with (
+  $body-font-family: $font-inter,
+);
+
 p a {
     color: rgb(var(--v-theme-primary));
     text-decoration: none;
