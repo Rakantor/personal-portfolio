@@ -18,23 +18,25 @@ const myCustomDarkTheme: ThemeDefinition = {
     secondary: '#8892B0',
     "on-background": '#CCD6F6',
     "on-backgroundSecondary": '#CCD6F6',
-    accent: colors.grey.darken3,
-    // secondary: colors.amber.darken3,
-    info: colors.teal.lighten1,
-    warning: colors.amber.base,
-    error: colors.deepOrange.accent4,
-    success: colors.green.accent3
+  },
+  variables: {
+    'border-color': '#FFFFFF',
+    'border-opacity': 0.12,
+    'high-emphasis-opacity': 1, // default: 0.87
+    'medium-emphasis-opacity': 0.7, // default: 0.60
+    'disabled-opacity': 0.38,
+    'idle-opacity': 0.10,
+    'hover-opacity': 0.04,
+    'focus-opacity': 0.12,
+    'selected-opacity': 0.08,
+    'activated-opacity': 0.12,
+    'pressed-opacity': 0.16,
+    'dragged-opacity': 0.08,
+    'theme-kbd': '#212529',
+    'theme-on-kbd': '#FFFFFF',
+    'theme-code': '#343434',
+    'theme-on-code': '#CCCCCC',
   }
-  // Nuxt Default
-  /* colors: {
-    primary: colors.blue.darken2,
-    accent: colors.grey.darken3,
-    secondary: colors.amber.darken3,
-    info: colors.teal.lighten1,
-    warning: colors.amber.base,
-    error: colors.deepOrange.accent4,
-    success: colors.green.accent3,
-  }, */
 }
 
 export default defineNuxtPlugin(nuxtApp => {
@@ -45,6 +47,7 @@ export default defineNuxtPlugin(nuxtApp => {
     defaults: {
       VCard: {
         elevation: 0,
+        color: "backgroundSecondary"
       },
     },
     theme: {
