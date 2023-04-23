@@ -1,18 +1,21 @@
 <template>
+  <ImageCarousel ref="imageCarousel" />
   <v-row>
     <v-col cols="12">
       <span class="text-h5 font-weight-medium">Some of my projects</span>
     </v-col>
     <v-col v-for="(project, index) of projects" :key="index" cols="12" lg="4" md="6">
-      <v-card color="backgroundSecondary">
+      <v-card height="100%" class="d-flex flex-column">
         <v-carousel
-          show-arrows="hover"
+          v-model="carouselIndex[index]"
+          :show-arrows="project.images.length > 1 ? 'hover' : false"
+          :hide-delimiters="project.images.length <= 1"
           hide-delimiter-background
           height="auto"
         >
           <v-carousel-item v-for="image of project.images" :key="image"
             :src="`${cdn}${image}`"
-            :aspect-ratio="1/1"
+            @click="showImageCarousel(project.images, carouselIndex[index])"
           ></v-carousel-item>
         </v-carousel>
         <v-card-item>
@@ -42,19 +45,26 @@
           </v-card-title>
           <v-card-subtitle>{{ project.subtitle }}</v-card-subtitle>
         </v-card-item>
+        <v-spacer></v-spacer>
         <v-card-text>{{ $t(project.description) }}</v-card-text>
-        <v-card-text class="d-flex flex-row flex-wrap justify-start">
-          <a v-for="t of project.tech" :key="tech[t].title"
+        <v-spacer></v-spacer>
+        <v-card-actions class="d-flex flex-row flex-wrap justify-center align-center">
+          <!--a v-for="t of project.tech" :key="tech[t].title"
             :href="`https://${tech[t].projectUrl}`"
             target="_blank"
           >
             <img
               :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].iconUrl}`"
               :height="20"
-              class="ma-1"
+              class="mx-1 mb-1"
             />
-          </a>
-        </v-card-text>
+          </a-->
+          <img v-for="t of project.tech" :key="tech[t].title"
+            :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].iconUrl}`"
+            :height="20"
+            class="ma-1"
+          />
+        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
@@ -67,9 +77,9 @@ export default {
     cdn: 'https://d29l6egdxvgg9c.cloudfront.net/',
     projects: [
     {
-        title: 'Torii SRS (v2 Beta)',
+        title: 'Torii SRS (v2-beta)',
         subtitle: 'Progressive Web App',
-        description: 'toriiSRSv2',
+        description: 'toriiWeb',
         tech: ['vue2', 'vuetify2', 'mysql', 'php', 'aws', 'azure', 'watson', 'heroku'],
         projectUrl: 'beta.torii-srs.com',
         images: [
@@ -81,7 +91,7 @@ export default {
       {
         title: 'Torii SRS (v1)',
         subtitle: 'Cross-platform app',
-        description: 'toriiSRSv1',
+        description: 'toriiJava',
         tech: ['java', 'libgdx', 'mysql', 'php', 'aws', 'wordpress'],
         projectUrl: 'torii-srs.com',
         images: [
@@ -96,28 +106,28 @@ export default {
         tech: ['nuxt2', 'vuetify2', 'firebase'],
         repoUrl: 'github.com/Rakantor/iu-quiz-app',
         projectUrl: 'iu-quiz-app.web.app',
-        images: ['torii-v1-1.jpg']
+        images: ['iu-quiz-app-2.jpg']
       },
       {
         title: 'Menacing Blue',
         subtitle: 'Cross-platform app',
         description: 'pmb',
         tech: ['java', 'libgdx'],
-        images: ['pmb-6.png', 'pmb-1.png', 'pmb-2.png', 'pmb-3.png', 'pmb-4.png', 'pmb-5.png']
+        images: ['pmb-6.png', 'pmb-1.png', 'pmb-2.png', 'pmb-3.png', 'pmb-4.png', 'pmb-5.png', 'pmb-7.jpg']
       },
       {
         title: 'Personal Website',
-        subtitle: 'The thing you\'re looking at right now',
-        description: '',
+        subtitle: 'Web App',
+        description: 'personalWebsite',
         tech: ['nuxt3', 'vuetify3', 'ghpages'],
         repoUrl: 'github.com/Rakantor/personal-portfolio',
         projectUrl: 'mave.dev',
-        images: ['torii-v1-1.jpg']
+        images: ['personal-website-1.jpg']
       },
       {
         title: 'IU Gamer App',
         subtitle: 'Android app',
-        description: '',
+        description: 'iuGamerApp',
         tech: ['android', 'firebase'],
         repoUrl: 'github.com/Rakantor/iubh-gamer-app',
         images: []
@@ -127,89 +137,80 @@ export default {
       android: {
         title: 'Android',
         iconUrl: 'https://cdn.simpleicons.org/android&label&color=3DDC84',
-        projectUrl: 'android.com'
       },
       aws: {
         title: 'AWS',
         iconUrl: 'https://cdn.simpleicons.org/amazonaws&label&color=232F3E',
-        projectUrl: 'nuxt.com'
       },
       azure: {
         title: 'Azure',
         iconUrl: 'https://cdn.simpleicons.org/microsoftazure&label&color=0078D4',
-        projectUrl: 'nuxt.com'
       },
       firebase: {
         title: 'Firebase',
         iconUrl: 'https://cdn.simpleicons.org/firebase&label&color=FFCA28',
-        projectUrl: 'nuxt.com'
       },
       ghpages: {
         title: 'GH Pages',
         iconUrl: 'https://cdn.simpleicons.org/github&label&color=222222',
-        projectUrl: 'nuxt.com'
       },
       heroku: {
         title: 'Heroku',
         iconUrl: 'https://cdn.simpleicons.org/heroku&label&color=430098',
-        projectUrl: 'nuxt.com'
       },
       java: {
         title: 'Java',
         iconUrl: 'https://cdn.simpleicons.org/coffeescript&label&color=FF7800',
-        projectUrl: 'nuxt.com'
       },
       libgdx: {
         title: 'libGDX',
         iconUrl: 'https://cdn.simpleicons.org/youtubegaming&label&color=990000',
-        projectUrl: 'nuxtjs.org'
       },
       mysql: {
         title: 'MySQL',
         iconUrl: 'https://cdn.simpleicons.org/mysql&label&color=4479A1',
-        projectUrl: 'nuxtjs.org'
       },
       nuxt2: {
         title: 'Nuxt 2',
         iconUrl: 'https://cdn.simpleicons.org/nuxtdotjs&label&color=00DC82',
-        projectUrl: 'nuxtjs.org'
       },
       nuxt3: {
         title: 'Nuxt 3',
         iconUrl: 'https://cdn.simpleicons.org/nuxtdotjs&label&color=00DC82',
-        projectUrl: 'nuxt.com'
       },
       php: {
         title: 'PHP',
         iconUrl: 'https://cdn.simpleicons.org/php&label&color=777BB4',
-        projectUrl: 'nuxt.com'
       },
       vue2: {
         title: 'Vue 2',
         iconUrl: 'https://cdn.simpleicons.org/vuedotjs&label&color=4FC08D',
-        projectUrl: 'nuxt.com'
       },
       vuetify2: {
         title: 'Vuetify 2',
         iconUrl: 'https://cdn.simpleicons.org/vuetify&label&color=1867C0',
-        projectUrl: 'nuxt.com'
       },
       vuetify3: {
         title: 'Vuetify 3',
         iconUrl: 'https://cdn.simpleicons.org/vuetify&label&color=1867C0',
-        projectUrl: 'nuxt.com'
       },
       watson: {
         title: 'Watson',
         iconUrl: 'https://cdn.simpleicons.org/ibmwatson&label&color=BE95FF',
-        projectUrl: 'nuxt.com'
       },
       wordpress: {
         title: 'WordPress',
         iconUrl: 'https://cdn.simpleicons.org/wordpress&label&color=21759B',
-        projectUrl: 'nuxt.com'
       }
+    },
+    carouselIndex: []
+  }),
+  methods: {
+    showImageCarousel (images, carouselIndex) {
+      this.$refs.imageCarousel.images = images.map(i => this.cdn+i)
+      this.$refs.imageCarousel.index = carouselIndex
+      this.$refs.imageCarousel.show = true
     }
-  })
+  }
 }
 </script>

@@ -1,27 +1,25 @@
 <template>
   <v-app class="v-app-bg">
     <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      fixed
-      right
+      :model-value="drawer"
+      location="right"
       app
       color="backgroundSecondary"
-      
+      disable-resize-watcher
     >
       <v-list nav :lines="false">
         <v-list-item
-          v-for="(item, i) in items"
+          v-for="(page, i) in pages"
           :key="i"
-          :to="item.to"
+          :to="page.url"
           active-color="primary"
           router
           exact
         >
           <template v-slot:prepend>
-            <v-icon :icon="item.icon"></v-icon>
+            <v-icon :icon="page.icon"></v-icon>
           </template>
-          <v-list-item-title v-text="item.title" />
+          <v-list-item-title v-text="page.title" />
         </v-list-item>
       </v-list>
       <template #append>
@@ -63,7 +61,7 @@
       </v-btn-toggle>
     </v-app-bar>
     <v-main>
-      <v-container class="my-16">
+      <v-container class="pa-md-16 my-16">
         <slot />
       </v-container>
     </v-main>
@@ -90,24 +88,21 @@ export default {
   },
   data: () => ({
     drawer: false,
-    miniVariant: false,
-    selectedItem: 0,
-    test: 0,
-    items: [
+    pages: [
       {
         icon: 'mdi-home',
         title: 'Home',
-        to: '/',
+        url: '/',
       },
       {
         icon: 'mdi-text-account',
         title: 'About',
-        to: '/bio',
+        url: '/bio',
       },
       {
         icon: 'mdi-briefcase',
         title: 'Work',
-        to: '/portfolio',
+        url: '/portfolio',
       }
     ]
   })
@@ -124,7 +119,7 @@ export default {
 .v-btn--variant-plain {
   color: rgb(var(--v-theme-on-background));
   transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0.87;
+  opacity: 1;
 
   &:hover {
     color: rgb(var(--v-theme-primary));

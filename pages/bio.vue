@@ -1,23 +1,20 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <span class="text-h4">My Journey as a Developer</span>
+      <span class="text-h4 text-high-emphasis">My Journey as a Developer</span>
     </v-col>
     <v-col cols="12">
-      <v-sheet color="transparent" :max-width="600">
+      <v-sheet color="transparent" class="text-medium-emphasis">
         <p>
           My interest in programming was sparked in 2007 when I began tinkering with SQL
-          to setup a private server for my favorite
-          <a href="https://en.wikipedia.org/wiki/Massively_multiplayer_online_role-playing_game" target="_blank">MMORPG</a>
-          (success!)
-        </p>
-        <p>
-          Eager to learn more, I attended a
-          <a href="https://en.wikipedia.org/wiki/H%C3%B6here_Technische_Lehranstalt" target="_blank">HTL</a>
+          in an attempt to setup a private server for my favorite
+          <a :href="mmorpgWikiUrl" target="_blank">MMORPG</a>
+          (it was a success!)
+          Eager to dive deeper into the world of coding, I attended a
+          <a :href="htlWikiUrl" target="_blank">HTL</a>
           specializing in IT in 2009, where I learned C, Java, HTML and CSS.
-        </p>
-        <p>
-          Some years later, I pursued a degree in <a href="https://en.wikipedia.org/wiki/Business_informatics">BI</a>
+          Some years later, I pursued a degree in
+          <a :href="biWikiUrl" target="_blank">BI</a>
           with a specialization in Web and App development.
         </p>
         <br/>
@@ -27,7 +24,7 @@
       </v-sheet>
     </v-col>
     <v-col v-for="set, ind in sets" :key="ind" cols="12">
-      <v-card variant="outlined">
+      <v-card>
         <v-card-item>
           <v-card-title>{{ set.title }}</v-card-title>
         </v-card-item>
@@ -64,15 +61,15 @@ import _groupBy from 'lodash-es/groupBy'
 export default {
   name: 'BioPage',
   data: () => ({
+    mmorpgWikiUrl: 'https://en.wikipedia.org/wiki/Massively_multiplayer_online_role-playing_game',
+    htlWikiUrl: 'https://en.wikipedia.org/wiki/H%C3%B6here_Technische_Lehranstalt',
+    biWikiUrl: 'https://en.wikipedia.org/wiki/Business_informatics',
     languages: [
       { title: 'Java', icon: 'mdi-language-java', url: 'java.com', level: 3 },
-      { title: 'Android', icon: 'mdi-android', url: 'android.com', level: 3 },
-      { title: 'C/C++', icon: 'mdi-language-cpp', url: 'isocpp.org', level: 2 },
+      { title: 'C/C++', icon: 'mdi-language-cpp', url: 'isocpp.org', level: 1 },
       { title: 'Python', icon: 'mdi-language-python', url: 'python.org', level: 1 },
       { title: 'JavaScript (ES6+)', icon: 'mdi-language-javascript', url: 'javascript.com', level: 3 },
       { title: 'TypeScript', icon: 'mdi-language-typescript', url: 'typescriptlang.org/', level: 1 },
-      { title: 'Vue.js', icon: 'mdi-vuejs', url: 'vuejs.org', level: 3 },
-      { title: 'Nuxt.js', icon: 'mdi-nuxt', url: 'nuxt.com', level: 3 },
       { title: 'HTML', icon: 'mdi-language-html5', url: 'html.spec.whatwg.org/multipage', level: 2 },
       { title: 'CSS', icon: 'mdi-language-css3', url: 'w3.org/Style/CSS', level: 2 },
       { title: 'PHP', icon: 'mdi-language-php', url: 'php.net', level: 2 },
@@ -80,6 +77,9 @@ export default {
       { title: 'Lua', icon: 'mdi-language-lua', url: 'lua.org', level: 2 }
     ],
     frameworks: [
+      { title: 'Android', icon: 'mdi-android', url: 'android.com', level: 2 },
+      { title: 'Vue.js', icon: 'mdi-vuejs', url: 'vuejs.org', level: 3 },
+      { title: 'Nuxt.js', icon: 'mdi-nuxt', url: 'nuxt.com', level: 3 },
       { title: 'Vuetify.js', icon: 'mdi-vuetify', url: 'vuetifyjs.com', level: 3 },
       { title: 'BootstrapVue', icon: 'mdi-bootstrap', url: 'bootstrap-vue.org', level: 1 },
       { title: 'libGDX', icon: 'mdi-alpha-l-box-outline', url: 'libgdx.com', level: 1 }
