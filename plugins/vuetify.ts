@@ -12,12 +12,13 @@ const myCustomDarkTheme: ThemeDefinition = {
   dark: true,
   colors: {
     background: '#0A192F',
-    backgroundSecondary: '#112240',
+    surface: '#112240',
+    backgroundTertiary: '#134074',
     primary: '#00DC82',
     // primary: '#64FFDA',
     secondary: '#8892B0',
     "on-background": '#CCD6F6',
-    "on-backgroundSecondary": '#CCD6F6',
+    "on-surface": '#CCD6F6',
   },
   variables: {
     'border-color': '#FFFFFF',
@@ -46,8 +47,7 @@ export default defineNuxtPlugin(nuxtApp => {
     blueprint: md3,
     defaults: {
       VCard: {
-        elevation: 0,
-        color: "backgroundSecondary"
+        elevation: 0
       },
     },
     theme: {
