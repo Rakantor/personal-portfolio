@@ -16,8 +16,10 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+    "badgen": "^3.2.2",
     "lodash-es": "^4.17.21",
     "sass": "^1.56.0",
+    "simple-icons": "^8.11.0",
     "vite-plugin-vuetify": "^1.0.0",
     "vuetify": "^3.0.0"
   }
