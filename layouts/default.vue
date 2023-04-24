@@ -4,7 +4,6 @@
       :model-value="drawer"
       location="right"
       app
-      color="backgroundSecondary"
       disable-resize-watcher
     >
       <v-list nav :lines="false">
@@ -40,7 +39,7 @@
       <template v-slot:prepend>
         <v-avatar
           size="48"
-          color="backgroundSecondary"
+          color="surface"
           style="cursor: pointer"
           @click.native="$router.push('/')"
         >

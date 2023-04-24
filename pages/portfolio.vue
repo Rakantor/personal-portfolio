@@ -27,7 +27,7 @@
               variant="text"
               icon="mdi-github"
               density="comfortable"
-              color="on-backgroundSecondary"
+              color="on-surface"
               :href="`https://${project.repoUrl}`"
               target="_blank"
               class="link"
@@ -37,7 +37,7 @@
               variant="text"
               icon="mdi-open-in-new"
               density="comfortable"
-              color="on-backgroundSecondary"
+              color="on-surface"
               :href="`https://${project.projectUrl}`"
               target="_blank"
               class="link"
@@ -49,21 +49,33 @@
         <v-card-text>{{ $t(project.description) }}</v-card-text>
         <v-spacer></v-spacer>
         <v-card-actions class="d-flex flex-row flex-wrap justify-center align-center">
-          <!--a v-for="t of project.tech" :key="tech[t].title"
-            :href="`https://${tech[t].projectUrl}`"
-            target="_blank"
-          >
-            <img
-              :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].iconUrl}`"
-              :height="20"
-              class="mx-1 mb-1"
-            />
-          </a-->
           <img v-for="t of project.tech" :key="tech[t].title"
-            :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].iconUrl}`"
+            :src="generateBadgen(tech[t].title, tech[t].iconUrl)"
             :height="20"
             class="ma-1"
           />
+
+          <!-- colored badges
+          <img v-for="t of project.tech" :key="tech[t].title"
+            :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].iconUrl}${tech[t].color}&label`"
+            :height="20"
+            class="ma-1"
+          />
+          -->
+
+          <!-- colored badges w/ links to brand websites
+          <a v-for="t of project.tech" :key="tech[t].title"
+            :href="`https://${tech[t].projectUrl}`"
+            target="_blank"
+          >
+            <img v-for="t of project.tech" :key="tech[t].title"
+              :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].iconUrl}${tech[t].color}&label`"
+              :height="20"
+              class="ma-1"
+            />
+          </a>
+          -->
+
         </v-card-actions>
       </v-card>
     </v-col>
@@ -71,6 +83,11 @@
 </template>
 
 <script>
+import { badgen } from 'badgen'
+import { siAndroid, siAmazonaws, siMicrosoftazure, siFirebase, siGithub,
+  siHeroku, siCoffeescript, siYoutubegaming, siMysql, siNuxtdotjs, siPhp,
+  siVuedotjs, siVuetify, siIbmwatson, siWordpress } from 'simple-icons'
+
 export default {
   name: 'PortfolioComponent',
   data: () => ({
@@ -136,76 +153,108 @@ export default {
     tech: {
       android: {
         title: 'Android',
-        iconUrl: 'https://cdn.simpleicons.org/android&label&color=3DDC84',
+        color: '3DDC84',
+        iconUrl: siAndroid,
       },
       aws: {
         title: 'AWS',
-        iconUrl: 'https://cdn.simpleicons.org/amazonaws&label&color=232F3E',
+        color: '232F3E',
+        iconUrl: siAmazonaws,
       },
       azure: {
         title: 'Azure',
-        iconUrl: 'https://cdn.simpleicons.org/microsoftazure&label&color=0078D4',
+        color: '0078D4',
+        iconUrl: siMicrosoftazure,
       },
       firebase: {
         title: 'Firebase',
-        iconUrl: 'https://cdn.simpleicons.org/firebase&label&color=FFCA28',
+        color: 'FFCA28',
+        iconUrl: siFirebase,
       },
       ghpages: {
         title: 'GH Pages',
-        iconUrl: 'https://cdn.simpleicons.org/github&label&color=222222',
+        color: '222222',
+        iconUrl: siGithub,
       },
       heroku: {
         title: 'Heroku',
-        iconUrl: 'https://cdn.simpleicons.org/heroku&label&color=430098',
+        color: '430098',
+        iconUrl: siHeroku,
       },
       java: {
         title: 'Java',
-        iconUrl: 'https://cdn.simpleicons.org/coffeescript&label&color=FF7800',
+        color: 'FF7800',
+        iconUrl: siCoffeescript,
       },
       libgdx: {
         title: 'libGDX',
-        iconUrl: 'https://cdn.simpleicons.org/youtubegaming&label&color=990000',
+        color: '990000',
+        iconUrl: siYoutubegaming,
       },
       mysql: {
         title: 'MySQL',
-        iconUrl: 'https://cdn.simpleicons.org/mysql&label&color=4479A1',
+        color: '4479A1',
+        iconUrl: siMysql,
       },
       nuxt2: {
         title: 'Nuxt 2',
-        iconUrl: 'https://cdn.simpleicons.org/nuxtdotjs&label&color=00DC82',
+        color: '00DC82',
+        iconUrl: siNuxtdotjs,
       },
       nuxt3: {
         title: 'Nuxt 3',
-        iconUrl: 'https://cdn.simpleicons.org/nuxtdotjs&label&color=00DC82',
+        color: '00DC82',
+        iconUrl: siNuxtdotjs,
       },
       php: {
         title: 'PHP',
-        iconUrl: 'https://cdn.simpleicons.org/php&label&color=777BB4',
+        color: '777BB4',
+        iconUrl: siPhp,
       },
       vue2: {
         title: 'Vue 2',
-        iconUrl: 'https://cdn.simpleicons.org/vuedotjs&label&color=4FC08D',
+        color: '4FC08D',
+        iconUrl: siVuedotjs,
       },
       vuetify2: {
         title: 'Vuetify 2',
-        iconUrl: 'https://cdn.simpleicons.org/vuetify&label&color=1867C0',
+        color: '1867C0',
+        iconUrl: siVuetify,
       },
       vuetify3: {
         title: 'Vuetify 3',
-        iconUrl: 'https://cdn.simpleicons.org/vuetify&label&color=1867C0',
+        color: '1867C0',
+        iconUrl: siVuetify,
       },
       watson: {
         title: 'Watson',
-        iconUrl: 'https://cdn.simpleicons.org/ibmwatson&label&color=BE95FF',
+        color: 'BE95FF',
+        iconUrl: siIbmwatson,
       },
       wordpress: {
         title: 'WordPress',
-        iconUrl: 'https://cdn.simpleicons.org/wordpress&label&color=21759B',
+        color: '21759B',
+        iconUrl: siWordpress,
       }
     },
     carouselIndex: []
   }),
   methods: {
+    generateBadgen (label, iconUrl) {
+      // const iconColor = iconUrl.hex
+      const iconColor = 'FFFFFF'
+      const iconSvg = iconUrl.svg.replace('<path ', `<path fill="#${iconColor}" `)
+      const svg = badgen({
+        label: '',
+        status: label,
+        // color: iconColor,
+        color: this.$vuetify.theme.current.colors.backgroundTertiary.slice(1),
+        style: 'classic',
+        icon: `data:image/svg+xml;utf8,${encodeURIComponent(iconSvg)}`
+      })
+
+      return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`
+    },
     showImageCarousel (images, carouselIndex) {
       this.$refs.imageCarousel.images = images.map(i => this.cdn+i)
       this.$refs.imageCarousel.index = carouselIndex
@@ -214,3 +263,9 @@ export default {
   }
 }
 </script>
+
+<style>
+path {
+    fill: #fff !IMPORTANT;
+}
+</style>
