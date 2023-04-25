@@ -4,16 +4,19 @@
 set -e
 
 # build
-npm run build
+npx nuxi generate
 
 # navigate into the build output directory
-cd dist
+cd .output/public
+touch .nojekyll
 
 # if you are deploying to a custom domain
 echo 'mave.dev' > CNAME
 
 git init
 git add -A
+git config --local user.email "rakantor.dev@gmail.com"
+git config --local user.name "Rakantor"
 git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io
