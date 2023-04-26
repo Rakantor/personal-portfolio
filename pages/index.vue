@@ -6,11 +6,16 @@
       </span>
     </v-col>
     <v-col cols="12" class="my-6">
-      <p class="text-body-1 text-md-h6 text-medium-emphasis" style="max-width: 550px;">
-        I'm a Software Developer based in Vienna, Austria.<br/>
-        I develop various types of applications.
-        Explore my <NuxtLink to="/portfolio">portfolio</NuxtLink> to view a showcase of my projects.
-      </p>
+      <i18n-t
+        keypath="introduction"
+        tag="p"
+        class="text-body-1 text-md-h6 text-medium-emphasis"
+        style="max-width: 550px;"
+      >
+        <template v-slot:portfolio>
+          <NuxtLink to="/portfolio">{{ $t('portfolio') }}</NuxtLink>
+        </template>
+      </i18n-t>
     </v-col>
     <v-col cols="12">
       <v-btn
@@ -19,7 +24,7 @@
         prepend-icon="mdi-email-outline"
         :href="`mailto:<${$myEmail}>`"
       >
-        Get in touch
+        {{ $t('getInTouch') }}
       </v-btn>
     </v-col>
   </v-row>

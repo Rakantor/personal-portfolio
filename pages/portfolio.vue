@@ -2,7 +2,7 @@
   <ImageCarousel ref="imageCarousel" />
   <v-row>
     <v-col cols="12">
-      <span class="text-h5 font-weight-medium">Some of my projects</span>
+      <span class="text-h5 font-weight-medium">{{ $t('portfolioTitle') }}</span>
     </v-col>
     <v-col v-for="(project, index) of projects" :key="index" cols="12" lg="4" md="6">
       <v-card height="100%" class="d-flex flex-column">
@@ -263,9 +263,3 @@ export default {
   }
 }
 </script>
-
-<style>
-path {
-    fill: #fff !IMPORTANT;
-}
-</style>

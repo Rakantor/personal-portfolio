@@ -18,7 +18,7 @@
           <template v-slot:prepend>
             <v-icon :icon="page.icon"></v-icon>
           </template>
-          <v-list-item-title v-text="page.title" />
+          <v-list-item-title v-text="$t(page.title)" />
         </v-list-item>
       </v-list>
       <template #append>
@@ -53,10 +53,10 @@
         @click.stop="drawer = !drawer"
       />
       <v-btn-toggle v-else :model-value="0" mandatory variant="plain" selected-class="link-active">
-        <v-btn :ripple="false" to="/">Home</v-btn>
-        <v-btn :ripple="false" to="/bio">About</v-btn>
-        <v-btn :ripple="false" to="/portfolio">Work</v-btn>
-        <v-btn :ripple="false" :href="`mailto:<${$myEmail}>`">Contact</v-btn>
+        <v-btn :ripple="false" to="/">{{ $t('headerHome') }}</v-btn>
+        <v-btn :ripple="false" to="/bio">{{ $t('headerAbout') }}</v-btn>
+        <v-btn :ripple="false" to="/portfolio">{{ $t('headerWork') }}</v-btn>
+        <v-btn :ripple="false" :href="`mailto:<${$myEmail}>`">{{ $t('headerContact') }}</v-btn>
       </v-btn-toggle>
     </v-app-bar>
     <v-main>
@@ -64,14 +64,72 @@
         <slot />
       </v-container>
     </v-main>
-    <v-footer app absolute color="transparent">
-      <v-row justify="center" no-gutters>
-        <v-col cols="12" class="text-center">
-          <span class="text-caption">
-            &copy; {{ new Date().getFullYear() }} {{ $myName }}
-          </span>
-        </v-col>
-      </v-row>
+    <v-footer
+      app absolute
+      color="transparent"
+      style="border-top: 1px solid rgba(var(--v-theme-on-surface), 0.1);"
+    >
+      <v-container class="d-flex py-0 my-0">
+        <v-row no-gutters>
+          <v-col cols="4" class="text-center my-auto">
+            <v-btn
+              variant="plain"
+              size="x-small"
+              density="compact"
+              color="on-surface"
+              :ripple="false"
+              class="link"
+              to="/imprint"
+            >
+              {{ $t('imprint') }}
+            </v-btn>
+          </v-col>
+          <v-col cols="4" class="text-center my-auto">
+            <span class="text-caption">
+              &copy; {{ new Date().getFullYear() }} {{ $myName }}
+            </span>
+          </v-col>
+          <v-col cols="4" class="text-center my-auto">
+            <v-btn
+              variant="plain"
+              icon="mdi-github"
+              density="comfortable"
+              color="on-surface"
+              :ripple="false"
+              class="link"
+              :href="projectUrl"
+              target="_blank"
+            />
+            <v-menu location="top right" :close-on-content-click="false">
+              <template v-slot:activator="{ props }">
+                <v-btn
+                  v-bind="props"
+                  variant="plain"
+                  icon="mdi-translate"
+                  density="comfortable"
+                  color="on-surface"
+                  :ripple="false"
+                  class="link"
+                />
+              </template>
+              <v-list nav min-width="150">
+                <v-list-subheader>{{ $t('lang').toUpperCase() }}</v-list-subheader>
+                <v-list-item
+                  v-for="locale in availableLocales"
+                  :key="locale.code"
+                  :value="locale"
+                  :active="locale.code == $i18n.locale"
+                  active-color="primary"
+                >
+                  <v-list-item-title @click="changeLocale(locale.code)">
+                    {{ locale.name }}
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-footer>
   </v-app>
 </template>
@@ -86,25 +144,40 @@ export default {
     return { smAndDown }
   },
   data: () => ({
-    drawer: false,
+    projectUrl: 'https://github.com/Rakantor/personal-portfolio',
+    availableLocales: [
+      { code: 'en', name: 'English' },
+      { code: 'de', name: 'Deutsch' }
+    ],
     pages: [
       {
         icon: 'mdi-home',
-        title: 'Home',
+        title: 'headerHome',
         url: '/',
       },
       {
         icon: 'mdi-text-account',
-        title: 'About',
+        title: 'headerAbout',
         url: '/bio',
       },
       {
         icon: 'mdi-briefcase',
-        title: 'Work',
+        title: 'headerWork',
         url: '/portfolio',
       }
-    ]
-  })
+    ],
+    drawer: false,
+  }),
+  methods: {
+    changeLocale (langCode) {
+      this.$i18n.setLocale(langCode)
+      localStorage.setItem('lang', langCode)
+    }
+  },
+  created () {
+    const locale = localStorage.getItem('lang') || this.$i18n.locale
+    if (locale != this.$i18n.locale) this.$i18n.setLocale(locale)
+  }
 }
 </script>
 

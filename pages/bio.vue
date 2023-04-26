@@ -1,32 +1,32 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <span class="text-h4 text-high-emphasis">My Journey as a Developer</span>
+      <span class="text-h4 text-high-emphasis">{{ $t('bioTitle') }}</span>
     </v-col>
     <v-col cols="12">
       <v-sheet color="transparent" class="text-medium-emphasis">
-        <p>
-          My interest in programming was sparked in 2007 when I began tinkering with SQL
-          in an attempt to setup a private server for my favorite
-          <a :href="mmorpgWikiUrl" target="_blank">MMORPG</a>
-          (it was a success!)
-          Eager to dive deeper into the world of coding, I attended a
-          <a :href="htlWikiUrl" target="_blank">HTL</a>
-          specializing in IT in 2009, where I learned C, Java, HTML and CSS.
-          Some years later, I pursued a degree in
-          <a :href="biWikiUrl" target="_blank">BI</a>
-          with a specialization in Web and App development.
-        </p>
+        <i18n-t
+          keypath="bioBody"
+          tag="p"
+        >
+          <template v-slot:mmorpg>
+            <NuxtLink :href="mmorpgWikiUrl" target="_blank">MMORPG</NuxtLink>
+          </template>
+          <template v-slot:htl>
+            <NuxtLink :href="htlWikiUrl" target="_blank">HTL</NuxtLink>
+          </template>
+          <template v-slot:bi>
+            <NuxtLink :href="biWikiUrl" target="_blank">{{ $t('bi') }}</NuxtLink>
+          </template>
+        </i18n-t>
         <br/>
-        <p>
-          Here's some of the tech that I've used and worked with before:
-        </p>
+        <p>{{ $t('bioSubtitle') }}</p>
       </v-sheet>
     </v-col>
     <v-col v-for="set, ind in sets" :key="ind" cols="12">
       <v-card>
         <v-card-item>
-          <v-card-title>{{ set.title }}</v-card-title>
+          <v-card-title>{{ $t(set.title) }}</v-card-title>
         </v-card-item>
         <v-card-text class="text-center">
           <v-row>
@@ -112,15 +112,15 @@ export default {
       const os = _groupBy(this.os, e => e.level)
       return [
         {
-          title: "Languages & Frameworks",
+          title: 'languagesFrameworks',
           data: Object.keys(languages).sort().reverse().map(e => languages[e])
         },
         {
-          title: "Tools & Platforms",
+          title: 'toolsPlatforms',
           data: Object.keys(tech).sort().reverse().map(e => tech[e])
         },
         {
-          title: "Operating Systems",
+          title: 'os',
           data: Object.keys(os).sort().reverse().map(e => os[e])
         }
       ]
