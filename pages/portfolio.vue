@@ -15,6 +15,7 @@
         >
           <v-carousel-item v-for="image of project.images" :key="image"
             :src="`${cdn}${image}`"
+            :class="project.class"
             @click="showImageCarousel(project.images, carouselIndex[index])"
           ></v-carousel-item>
         </v-carousel>
@@ -45,7 +46,6 @@
           </v-card-title>
           <v-card-subtitle>{{ project.subtitle }}</v-card-subtitle>
         </v-card-item>
-        <v-spacer></v-spacer>
         <v-card-text>{{ $t(project.description) }}</v-card-text>
         <v-spacer></v-spacer>
         <v-card-actions class="d-flex flex-row flex-wrap justify-center align-center">
@@ -139,15 +139,16 @@ export default {
         tech: ['nuxt3', 'vuetify3', 'ghpages'],
         repoUrl: 'github.com/Rakantor/personal-portfolio',
         projectUrl: 'mave.dev',
-        images: ['personal-website-1.jpg']
+        images: ['personal-website-1.jpg'],
+        class: 'pa-2'
       },
       {
         title: 'IU Gamer App',
         subtitle: 'Android app',
         description: 'iuGamerApp',
-        tech: ['android', 'firebase'],
+        tech: ['java', 'android', 'firebase'],
         repoUrl: 'github.com/Rakantor/iubh-gamer-app',
-        images: []
+        images: ['iu-gamer-app-1.jpg', 'iu-gamer-app-2.jpg']
       }
     ],
     tech: {
@@ -242,7 +243,7 @@ export default {
   methods: {
     generateBadgen (label, iconUrl) {
       // const iconColor = iconUrl.hex
-      const iconColor = 'FFFFFF'
+      const iconColor = 'FFFFFF' // white
       const iconSvg = iconUrl.svg.replace('<path ', `<path fill="#${iconColor}" `)
       const svg = badgen({
         label: '',
