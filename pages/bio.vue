@@ -31,22 +31,21 @@
         <v-card-text class="text-center">
           <v-row>
             <v-col v-for="(v, i) in set.data" :key="i" cols="12">
-              <v-tooltip v-for="(value, index) in v" :key="index" location="bottom" :text="value.title">
-                <template #activator="{ props }">
+              <v-row justify="center">
+                <v-col cols="auto" v-for="(value, index) in v" :key="index">
                   <v-btn
                     variant="text"
-                    :icon="value.icon"
                     :size="getButtonSize(value.level)"
                     color="primary"
                     class="mx-1"
                     :href="`https://${value.url}`"
                     target="_blank"
-                    v-bind="props"
                   >
                     <v-icon :icon="value.icon" :size="getButtonSize(value.level) - 10"></v-icon>
                   </v-btn>
-                </template>
-              </v-tooltip>
+                  <span class="text-overline text-primary d-flex flex-column ma-0 pa-0">{{ value.title }}</span>
+                </v-col>
+              </v-row>
             </v-col>
           </v-row>
         </v-card-text>
@@ -79,22 +78,22 @@ export default {
     frameworks: [
       { title: 'Android', icon: 'mdi-android', url: 'android.com', level: 2 },
       { title: 'Vue.js', icon: 'mdi-vuejs', url: 'vuejs.org', level: 3 },
-      { title: 'Nuxt.js', icon: 'mdi-nuxt', url: 'nuxt.com', level: 3 },
-      { title: 'Vuetify.js', icon: 'mdi-vuetify', url: 'vuetifyjs.com', level: 3 },
-      { title: 'BootstrapVue', icon: 'mdi-bootstrap', url: 'bootstrap-vue.org', level: 1 },
+      { title: 'Nuxt', icon: 'mdi-nuxt', url: 'nuxt.com', level: 3 },
+      { title: 'Vuetify', icon: 'mdi-vuetify', url: 'vuetifyjs.com', level: 3 },
+      { title: 'Bootstrap', icon: 'mdi-bootstrap', url: 'bootstrap-vue.org', level: 1 },
       { title: 'libGDX', icon: 'mdi-alpha-l-box-outline', url: 'libgdx.com', level: 1 }
     ],
     tech: [
       { title: 'Amazon Web Services', icon: 'mdi-aws', url: 'aws.amazon.com', level: 3 },
-      { title: 'Google Firebase', icon: 'mdi-firebase', url: 'firebase.google.com', level: 3 },
-      { title: 'Microsoft Azure', icon: 'mdi-microsoft-azure', url: 'azure.microsoft.com', level: 1 },
+      { title: 'Firebase', icon: 'mdi-firebase', url: 'firebase.google.com', level: 3 },
+      { title: 'Azure', icon: 'mdi-microsoft-azure', url: 'azure.microsoft.com', level: 1 },
       { title: 'Heroku', icon: 'brands:heroku', url: 'heroku.com', level: 1 },
       { title: 'WordPress', icon: 'mdi-wordpress', url: 'wordpress.com', level: 1 },
       { title: 'Unity', icon: 'mdi-unity', url: 'unity.com', level: 1 },
       { title: 'Unreal Engine', icon: 'mdi-unreal', url: 'unrealengine.com', level: 1 }
     ],
     os: [
-      { title: 'Microsoft Windows', icon: 'mdi-microsoft-windows', url: 'microsoft.com/windows', level: 3 },
+      { title: 'Windows', icon: 'mdi-microsoft-windows', url: 'microsoft.com/windows', level: 3 },
       { title: 'Apple macOS', icon: 'brands:apple', url: 'apple.com/macos', level: 3 },
       { title: 'Linux Mint', icon: 'mdi-linux-mint', url: 'linuxmint.com', level: 3 },
       { title: 'Fedora Workstation', icon: 'mdi-fedora', url: 'getfedora.org', level: 3 },
