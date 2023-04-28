@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <span class="text-h4 text-high-emphasis">{{ $t('bioTitle') }}</span>
+      <span class="text-h5 text-md-h4 text-high-emphasis">{{ $t('bioTitle') }}</span>
     </v-col>
     <v-col cols="12">
       <v-sheet color="transparent" class="text-medium-emphasis">
@@ -132,9 +132,9 @@ export default {
   methods: {
     getButtonSize (level) {
       switch (level) {
-        case 1: return 48
-        case 2: return 64
-        default: return 96
+        case 1: return this.$vuetify.display.smAndDown ? 32 : 48
+        case 2: return this.$vuetify.display.smAndDown ? 48 : 64
+        default: return this.$vuetify.display.smAndDown ? 64 : 96
       }
     }
   }

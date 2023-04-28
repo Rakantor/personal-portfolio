@@ -71,7 +71,7 @@
     >
       <v-container class="d-flex py-0 my-0">
         <v-row no-gutters>
-          <v-col cols="4" class="text-center my-auto">
+          <v-col cols="4" class="my-auto" :class="$vuetify.display.mobile ? 'text-left' : 'text-center'">
             <v-btn
               variant="plain"
               size="x-small"
@@ -85,11 +85,11 @@
             </v-btn>
           </v-col>
           <v-col cols="4" class="text-center my-auto">
-            <span class="text-caption">
+            <span class="text-caption text-no-wrap">
               &copy; {{ new Date().getFullYear() }} {{ $myName }}
             </span>
           </v-col>
-          <v-col cols="4" class="text-center my-auto">
+          <v-col cols="4" class="my-auto" :class="$vuetify.display.mobile ? 'text-right' : 'text-center'">
             <v-btn
               variant="plain"
               icon="mdi-github"
