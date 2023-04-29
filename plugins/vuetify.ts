@@ -49,6 +49,9 @@ export default defineNuxtPlugin(nuxtApp => {
       VCard: {
         elevation: 0
       },
+      VCarousel: {
+        color: 'primary'
+      }
     },
     theme: {
       // customVariables: ['~/assets/variables.scss'],
