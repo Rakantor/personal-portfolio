@@ -1,9 +1,15 @@
 <template>
   <v-dialog v-model="show">
+    <v-btn
+      position="absolute"
+      location="top right"
+      icon="mdi-close"
+      @click.prevent="show = false"
+      style="z-index: 5000;"
+    ></v-btn>
     <v-carousel
       :model-value="index"
       :show-arrows="images.length > 1"
-      hide-delimiters
       class="ma-auto"
       :height="carouselHeight"
     >
