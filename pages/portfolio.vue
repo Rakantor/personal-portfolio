@@ -2,7 +2,9 @@
   <ImageCarousel ref="imageCarousel" />
   <v-row>
     <v-col cols="12">
-      <span class="text-h5 font-weight-medium">{{ $t('portfolioTitle') }}</span>
+      <span class="text-h5 font-weight-medium">
+        {{ $t('portfolioTitle') }}
+      </span>
     </v-col>
     <v-col v-for="(project, index) of projects" :key="index" cols="12" lg="4" md="6">
       <v-card height="100%" class="d-flex flex-column">
@@ -10,7 +12,6 @@
           v-model="carouselIndex[index]"
           :show-arrows="project.images.length > 1 ? 'hover' : false"
           :hide-delimiters="project.images.length <= 1"
-          hide-delimiter-background
           height="auto"
         >
           <v-carousel-item v-for="image of project.images" :key="image"
@@ -50,14 +51,14 @@
         <v-spacer></v-spacer>
         <v-card-actions class="d-flex flex-row flex-wrap justify-center align-center">
           <img v-for="t of project.tech" :key="tech[t].title"
-            :src="generateBadgen(tech[t].title, tech[t].iconUrl)"
+            :src="generateBadgen(tech[t].title, tech[t].icon)"
             :height="20"
             class="ma-1"
           />
 
           <!-- colored badges
           <img v-for="t of project.tech" :key="tech[t].title"
-            :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].iconUrl}${tech[t].color}&label`"
+            :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].icon}${tech[t].color}&label`"
             :height="20"
             class="ma-1"
           />
@@ -69,7 +70,7 @@
             target="_blank"
           >
             <img v-for="t of project.tech" :key="tech[t].title"
-              :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].iconUrl}${tech[t].color}&label`"
+              :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].icon}${tech[t].color}&label`"
               :height="20"
               class="ma-1"
             />
@@ -89,13 +90,13 @@ import { siAndroid, siAmazonaws, siMicrosoftazure, siFirebase, siGithub,
   siVuedotjs, siVuetify, siIbmwatson, siWordpress } from 'simple-icons'
 
 export default {
-  name: 'PortfolioComponent',
+  name: 'PortfolioPage',
   data: () => ({
     cdn: 'https://d29l6egdxvgg9c.cloudfront.net/',
     projects: [
-    {
+      {
         title: 'Torii SRS (v2-beta)',
-        subtitle: 'Progressive Web App',
+        subtitle: 'Progressive Web App (SPA)',
         description: 'toriiWeb',
         tech: ['vue2', 'vuetify2', 'mysql', 'php', 'aws', 'azure', 'watson', 'heroku'],
         projectUrl: 'beta.torii-srs.com',
@@ -107,7 +108,7 @@ export default {
       },
       {
         title: 'Torii SRS (v1)',
-        subtitle: 'Cross-platform app',
+        subtitle: 'Cross-Platform App',
         description: 'toriiJava',
         tech: ['java', 'libgdx', 'mysql', 'php', 'aws', 'wordpress'],
         projectUrl: 'torii-srs.com',
@@ -118,7 +119,7 @@ export default {
       },
       {
         title: 'IU Quiz App',
-        subtitle: 'Web App',
+        subtitle: 'Web App (SPA)',
         description: 'iuQuizApp',
         tech: ['nuxt2', 'vuetify2', 'firebase'],
         repoUrl: 'github.com/Rakantor/iu-quiz-app',
@@ -127,14 +128,14 @@ export default {
       },
       {
         title: 'Menacing Blue',
-        subtitle: 'Cross-platform app',
+        subtitle: 'Cross-Platform App',
         description: 'pmb',
         tech: ['java', 'libgdx'],
         images: ['pmb-6.png', 'pmb-1.png', 'pmb-2.png', 'pmb-3.png', 'pmb-4.png', 'pmb-5.png', 'pmb-7.jpg']
       },
       {
         title: 'Personal Website',
-        subtitle: 'Web App',
+        subtitle: 'Web App (SPA)',
         description: 'personalWebsite',
         tech: ['nuxt3', 'vuetify3', 'ghpages'],
         repoUrl: 'github.com/Rakantor/personal-portfolio',
@@ -144,7 +145,7 @@ export default {
       },
       {
         title: 'IU Gamer App',
-        subtitle: 'Android app',
+        subtitle: 'Android App',
         description: 'iuGamerApp',
         tech: ['java', 'android', 'firebase'],
         repoUrl: 'github.com/Rakantor/iubh-gamer-app',
@@ -152,105 +153,40 @@ export default {
       }
     ],
     tech: {
-      android: {
-        title: 'Android',
-        color: '3DDC84',
-        iconUrl: siAndroid,
-      },
-      aws: {
-        title: 'AWS',
-        color: '232F3E',
-        iconUrl: siAmazonaws,
-      },
-      azure: {
-        title: 'Azure',
-        color: '0078D4',
-        iconUrl: siMicrosoftazure,
-      },
-      firebase: {
-        title: 'Firebase',
-        color: 'FFCA28',
-        iconUrl: siFirebase,
-      },
-      ghpages: {
-        title: 'GH Pages',
-        color: '222222',
-        iconUrl: siGithub,
-      },
-      heroku: {
-        title: 'Heroku',
-        color: '430098',
-        iconUrl: siHeroku,
-      },
-      java: {
-        title: 'Java',
-        color: 'FF7800',
-        iconUrl: siCoffeescript,
-      },
-      libgdx: {
-        title: 'libGDX',
-        color: '990000',
-        iconUrl: siYoutubegaming,
-      },
-      mysql: {
-        title: 'MySQL',
-        color: '4479A1',
-        iconUrl: siMysql,
-      },
-      nuxt2: {
-        title: 'Nuxt 2',
-        color: '00DC82',
-        iconUrl: siNuxtdotjs,
-      },
-      nuxt3: {
-        title: 'Nuxt 3',
-        color: '00DC82',
-        iconUrl: siNuxtdotjs,
-      },
-      php: {
-        title: 'PHP',
-        color: '777BB4',
-        iconUrl: siPhp,
-      },
-      vue2: {
-        title: 'Vue 2',
-        color: '4FC08D',
-        iconUrl: siVuedotjs,
-      },
-      vuetify2: {
-        title: 'Vuetify 2',
-        color: '1867C0',
-        iconUrl: siVuetify,
-      },
-      vuetify3: {
-        title: 'Vuetify 3',
-        color: '1867C0',
-        iconUrl: siVuetify,
-      },
-      watson: {
-        title: 'Watson',
-        color: 'BE95FF',
-        iconUrl: siIbmwatson,
-      },
-      wordpress: {
-        title: 'WordPress',
-        color: '21759B',
-        iconUrl: siWordpress,
-      }
+      android: { title: 'Android', color: '3DDC84', icon: siAndroid },
+      aws: { title: 'AWS', color: '232F3E', icon: siAmazonaws },
+      azure: { title: 'Azure', color: '0078D4', icon: siMicrosoftazure },
+      firebase: { title: 'Firebase', color: 'FFCA28', icon: siFirebase },
+      ghpages: { title: 'GH Pages', color: '222222', icon: siGithub },
+      heroku: { title: 'Heroku', color: '430098', icon: siHeroku },
+      java: { title: 'Java', color: 'FF7800', icon: siCoffeescript },
+      libgdx: { title: 'libGDX', color: '990000', icon: siYoutubegaming },
+      mysql: { title: 'MySQL', color: '4479A1', icon: siMysql },
+      nuxt2: { title: 'Nuxt 2', color: '00DC82', icon: siNuxtdotjs },
+      nuxt3: { title: 'Nuxt 3', color: '00DC82', icon: siNuxtdotjs },
+      php: { title: 'PHP', color: '777BB4', icon: siPhp },
+      vue2: { title: 'Vue 2', color: '4FC08D', icon: siVuedotjs },
+      vuetify2: { title: 'Vuetify 2', color: '1867C0', icon: siVuetify },
+      vuetify3: { title: 'Vuetify 3', color: '1867C0', icon: siVuetify },
+      watson: { title: 'Watson', color: 'BE95FF', icon: siIbmwatson },
+      wordpress: { title: 'WordPress', color: '21759B', icon: siWordpress }
     },
     carouselIndex: []
   }),
   methods: {
-    generateBadgen (label, iconUrl) {
-      // const iconColor = iconUrl.hex
+    /*
+     * https://github.com/badgen/badgen
+     */
+    generateBadgen (label, icon) {
+      // const iconColor = icon.hex
       const iconColor = 'FFFFFF' // white
-      const iconSvg = iconUrl.svg.replace('<path ', `<path fill="#${iconColor}" `)
+      const iconSvg = icon.svg.replace('<path ', `<path fill="#${iconColor}" `) // Change SVG icon color
       const svg = badgen({
         label: '',
         status: label,
         // color: iconColor,
-        color: this.$vuetify.theme.current.colors.backgroundTertiary.slice(1),
-        style: 'classic',
+        color: this.$vuetify.theme.current.colors.backgroundTertiary.slice(1), // Remove leading '#' from hex string
+        style: 'classic', // Can be 'classic' or 'flat'
         icon: `data:image/svg+xml;utf8,${encodeURIComponent(iconSvg)}`
       })
 

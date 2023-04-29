@@ -1,14 +1,13 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <span class="text-h5 text-md-h4 text-high-emphasis">{{ $t('bioTitle') }}</span>
+      <span class="text-h5 text-md-h4 text-high-emphasis">
+        {{ $t('bioTitle') }}
+      </span>
     </v-col>
     <v-col cols="12">
       <v-sheet color="transparent" class="text-medium-emphasis">
-        <i18n-t
-          keypath="bioBody"
-          tag="p"
-        >
+        <i18n-t keypath="bioBody" tag="p">
           <template v-slot:mmorpg>
             <NuxtLink :href="mmorpgWikiUrl" target="_blank">MMORPG</NuxtLink>
           </template>
@@ -43,7 +42,9 @@
                   >
                     <v-icon :icon="value.icon" :size="getButtonSize(value.level) - 10"></v-icon>
                   </v-btn>
-                  <span class="text-overline text-primary d-flex flex-column ma-0 pa-0">{{ value.title }}</span>
+                  <span class="text-overline text-primary d-flex flex-column ma-0 pa-0">
+                    {{ value.title }}
+                  </span>
                 </v-col>
               </v-row>
             </v-col>
@@ -109,6 +110,7 @@ export default {
       // const frameworks = _groupBy(this.frameworks, e => e.level)
       const tech = _groupBy(this.tech, e => e.level)
       const os = _groupBy(this.os, e => e.level)
+
       return [
         {
           title: 'languagesFrameworks',
@@ -123,17 +125,18 @@ export default {
           data: Object.keys(os).sort().reverse().map(e => os[e])
         }
       ]
-    },
-    skills () {
-      return [...this.languages, ...this.frameworks, ...this.tech, ...this.os]
     }
   },
   methods: {
     getButtonSize (level) {
+      const large = this.$vuetify.display.smAndDown ? 64 : 96
+      const medium = this.$vuetify.display.smAndDown ? 48 : 64
+      const small = this.$vuetify.display.smAndDown ? 32 : 48
+
       switch (level) {
-        case 1: return this.$vuetify.display.smAndDown ? 32 : 48
-        case 2: return this.$vuetify.display.smAndDown ? 48 : 64
-        default: return this.$vuetify.display.smAndDown ? 64 : 96
+        case 1: return small
+        case 2: return medium
+        default: return large
       }
     }
   }

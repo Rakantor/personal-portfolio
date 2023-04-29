@@ -3,22 +3,18 @@ import vuetify from 'vite-plugin-vuetify'
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   ssr: false,
-
   css: [
     'vuetify/styles',
     '~/assets/variables.scss'
   ],
-
   vite: {
     ssr: {
       noExternal: ['vuetify'] // add the vuetify vite plugin
     }
   },
-
   build: {
     transpile: ['vuetify']
   },
-
   app: {
     head: {
       // titleTemplate: '%s | Home',
@@ -40,10 +36,8 @@ export default defineNuxtConfig({
       ],
     }
   },
-
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
-
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
@@ -56,7 +50,6 @@ export default defineNuxtConfig({
       )
     }
   ],
-
   i18n: {
     // { vueI18n: './i18n.config.ts' }
     // TODO: Revert to config file once the bug in 8.0.0-beta.11 has been fixed
