@@ -33,6 +33,11 @@ p a {
     }
 }
 
+.v-overlay__scrim {
+    background: rgb(var(--v-theme-background)) !important;
+    opacity: 0.9 !important;
+}
+
 .link {
     color: inherit;
     text-decoration: none;
