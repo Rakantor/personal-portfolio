@@ -52,7 +52,7 @@ export default defineNuxtConfig({
   ],
   i18n: {
     // { vueI18n: './i18n.config.ts' }
-    // TODO: Revert to config file once the bug in 8.0.0-beta.11 has been fixed
+    // TODO: Revert to config file once the bug in 8.0.0-beta.11 has been fixed, see
     // https://github.com/nuxt-modules/i18n/issues/1990
     vueI18n: {
       legacy: false,
@@ -66,7 +66,7 @@ export default defineNuxtConfig({
             specializing in IT in 2009, where I learned C, Java, HTML and CSS.\
             Some years later, I pursued a degree in {bi} with a specialization\
             in Web and App development. I have acquired the majority of my knowledge through self-teaching\
-            while working on personal projects over the past ~15 years.',
+            while working on personal projects over the past ~{yearsOfExp} years.',
           bioTitle: 'My Journey as a Developer',
           bioSubtitle: 'Here\'s some of the tech that I\'ve worked with before:',
           getInTouch: 'Get in touch',
@@ -119,7 +119,7 @@ export default defineNuxtConfig({
             Nach dem Gymnasium habe ich mich 2009 dazu entschlossen, eine auf IT spezialisierte {htl} zu besuchen,\
             wo ich die Grundlagen in C, Java, HTML and CSS gelernt habe.\
             Ein paar Jahre später habe ich {bi} studiert - Wahlpflichtfächer Web- und App-Development.\
-            Den Großteil meines Wissens habe ich mir im Zuge persönlicher Projekte in den letzten ~15 Jahren\
+            Den Großteil meines Wissens habe ich mir im Zuge persönlicher Projekte in den letzten ~{yearsOfExp} Jahren\
             autodidaktisch angeeignet.',
           bioTitle: 'Mein Werdegang als Developer',
           bioSubtitle: 'Einige der Technologien, mit denen ich gearbeitet habe:',

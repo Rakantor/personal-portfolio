@@ -17,6 +17,9 @@
           <template v-slot:bi>
             <NuxtLink :href="biWikiUrl" target="_blank">{{ $t('bi') }}</NuxtLink>
           </template>
+          <template v-slot:yearsOfExp>
+            {{ yearsOfExp }}
+          </template>
         </i18n-t>
         <br/>
         <p>{{ $t('bioSubtitle') }}</p>
@@ -34,13 +37,13 @@
                 <v-col cols="auto" v-for="(value, index) in v" :key="index">
                   <v-btn
                     variant="text"
-                    :size="getButtonSize(value.level)"
+                    :size="brandIconSize(value.level)"
                     color="primary"
                     class="mx-1"
                     :href="`https://${value.url}`"
                     target="_blank"
                   >
-                    <v-icon :icon="value.icon" :size="getButtonSize(value.level) - 10"></v-icon>
+                    <v-icon :icon="value.icon" :size="brandIconSize(value.level) - 10"></v-icon>
                   </v-btn>
                   <span class="text-overline text-primary d-flex flex-column ma-0 pa-0">
                     {{ value.title }}
@@ -125,10 +128,17 @@ export default {
           data: Object.keys(os).sort().reverse().map(e => os[e])
         }
       ]
+    },
+    yearsOfExp () {
+      // startingYear = The year I started my first truly personal project (predecessor of Menacing Blue).
+      // Fun fact: I used Notepad++ and javac in cmd for coding rather than an IDE for like the first 6-12 months.
+      const startingYear = 2011
+      const currentYear = new Date().getFullYear()
+      return currentYear - startingYear
     }
   },
   methods: {
-    getButtonSize (level) {
+    brandIconSize (level) {
       const large = this.$vuetify.display.smAndDown ? 64 : 96
       const medium = this.$vuetify.display.smAndDown ? 48 : 64
       const small = this.$vuetify.display.smAndDown ? 32 : 48
