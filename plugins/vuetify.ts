@@ -47,6 +47,7 @@ export default defineNuxtPlugin(nuxtApp => {
     blueprint: md3,
     defaults: {
       VCard: {
+        border: 'sm',
         elevation: 0
       },
       VCarousel: {
