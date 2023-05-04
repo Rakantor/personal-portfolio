@@ -43,7 +43,7 @@
           style="cursor: pointer"
           @click.native="$router.push('/')"
         >
-          <img src="~/assets/avatar_transparent.png" width="55" />
+          <img src="~/assets/avatar_blueish.png" width="55" />
         </v-avatar>
       </template>
       <!-- v-app-bar-title class="text-subtitle-1" v-text="$myName" /-->
