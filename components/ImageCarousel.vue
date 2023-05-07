@@ -11,10 +11,11 @@
       :model-value="index"
       :show-arrows="images.length > 1"
       class="ma-auto"
-      :height="carouselHeight"
+      height="90vh"
     >
       <v-carousel-item v-for="image of images" :key="image"
         :src="image"
+        class="img-height"
       ></v-carousel-item>
     </v-carousel>
   </v-dialog>
@@ -27,11 +28,14 @@ export default {
     show: false,
     images: [],
     index: 0
-  }),
-  computed: {
-    carouselHeight () {
-      return window.innerHeight * 0.9
-    }
-  }
+  })
 }
 </script>
+
+<style scoped lang="scss">
+  @use 'vuetify/settings';
+
+  .img-height {
+    height: calc(90vh - settings.$carousel-controls-size);
+  }
+</style>
