@@ -1,4 +1,5 @@
 <template>
+  <div>
   <v-card class="mb-2">
     <v-card-item>
       <v-card-title>Offenlegung nach § 25 Mediengesetz</v-card-title>
@@ -960,11 +961,17 @@
     </p>
     </v-card-text>
   </v-card>
+  </div>
 </template>
 
 <script>
+definePageMeta({
+  id: 4,
+  pageTransition: false
+})
+
 export default {
-  name: 'ImprintPage',
+  name: 'ImprintPage'
 }
 </script>
 

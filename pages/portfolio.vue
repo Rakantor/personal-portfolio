@@ -1,89 +1,99 @@
 <template>
-  <ImageCarousel ref="imageCarousel" />
-  <v-row>
-    <v-col cols="12">
-      <span class="text-h5 font-weight-medium">
-        {{ $t('portfolioTitle') }}
-      </span>
-    </v-col>
-    <v-col v-for="(project, index) of projects" :key="index" cols="12" lg="4" md="6">
-      <v-card height="100%" class="d-flex flex-column">
-        <v-carousel
-          v-model="carouselIndex[index]"
-          :show-arrows="project.images.length > 1 ? 'hover' : false"
-          :hide-delimiters="project.images.length <= 1"
-          height="auto"
-        >
-          <v-carousel-item v-for="image of project.images" :key="image"
-            :src="`${cdn}${image}`"
-            :class="project.class"
-            @click="showImageCarousel(project.images, carouselIndex[index])"
-          ></v-carousel-item>
-        </v-carousel>
-        <v-card-item>
-          <v-card-title class="d-flex">
-            <span>{{ project.title }}</span>
-            <v-spacer></v-spacer>
-            <v-btn
-              v-if="project.repoUrl"
-              variant="text"
-              icon="mdi-github"
-              density="comfortable"
-              color="on-surface"
-              :href="`https://${project.repoUrl}`"
-              target="_blank"
-              class="link"
-            />
-            <v-btn
-              v-if="project.projectUrl"
-              variant="text"
-              icon="mdi-open-in-new"
-              density="comfortable"
-              color="on-surface"
-              :href="`https://${project.projectUrl}`"
-              target="_blank"
-              class="link"
-            />
-          </v-card-title>
-          <v-card-subtitle>{{ project.subtitle }}</v-card-subtitle>
-        </v-card-item>
-        <v-card-text>{{ $t(project.description) }}</v-card-text>
-        <v-spacer></v-spacer>
-        <v-card-actions class="d-flex flex-row flex-wrap justify-center align-center">
-          <img v-for="t of project.tech" :key="tech[t].title"
-            :src="generateBadgen(tech[t].title, tech[t].icon)"
-            :height="20"
-            class="ma-1"
-          />
-
-          <!-- colored badges
-          <img v-for="t of project.tech" :key="tech[t].title"
-            :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].icon}${tech[t].color}&label`"
-            :height="20"
-            class="ma-1"
-          />
-          -->
-
-          <!-- colored badges w/ links to brand websites
-          <a v-for="t of project.tech" :key="tech[t].title"
-            :href="`https://${tech[t].projectUrl}`"
-            target="_blank"
+  <div>
+    <ImageCarousel ref="imageCarousel" />
+    <v-row>
+      <v-col cols="12">
+        <span class="text-h5 font-weight-medium">
+          {{ $t('portfolioTitle') }}
+        </span>
+      </v-col>
+      <v-col v-for="(project, index) of projects" :key="index" cols="12" lg="4" md="6">
+        <v-card height="100%" class="d-flex flex-column">
+          <v-carousel
+            v-model="carouselIndex[index]"
+            :show-arrows="project.images.length > 1 ? 'hover' : false"
+            :hide-delimiters="project.images.length <= 1"
+            height="auto"
           >
+            <v-carousel-item v-for="image of project.images" :key="image"
+              :src="`${cdn}${image}`"
+              :class="project.class"
+              @click="showImageCarousel(project.images, carouselIndex[index])"
+            ></v-carousel-item>
+          </v-carousel>
+          <v-card-item>
+            <v-card-title class="d-flex">
+              <span>{{ project.title }}</span>
+              <v-spacer></v-spacer>
+              <v-btn
+                v-if="project.repoUrl"
+                variant="text"
+                icon="mdi-github"
+                density="comfortable"
+                color="on-surface"
+                :href="`https://${project.repoUrl}`"
+                target="_blank"
+                class="link"
+              />
+              <v-btn
+                v-if="project.projectUrl"
+                variant="text"
+                icon="mdi-open-in-new"
+                density="comfortable"
+                color="on-surface"
+                :href="`https://${project.projectUrl}`"
+                target="_blank"
+                class="link"
+              />
+            </v-card-title>
+            <v-card-subtitle>{{ project.subtitle }}</v-card-subtitle>
+          </v-card-item>
+          <v-card-text>{{ $t(project.description) }}</v-card-text>
+          <v-spacer></v-spacer>
+          <v-card-actions class="d-flex flex-row flex-wrap justify-center align-center">
+            <img v-for="t of project.tech" :key="tech[t].title"
+              :src="generateBadgen(tech[t].title, tech[t].icon)"
+              :height="20"
+              class="ma-1"
+            />
+
+            <!-- colored badges
             <img v-for="t of project.tech" :key="tech[t].title"
               :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].icon}${tech[t].color}&label`"
               :height="20"
               class="ma-1"
             />
-          </a>
-          -->
+            -->
 
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+            <!-- colored badges w/ links to brand websites
+            <a v-for="t of project.tech" :key="tech[t].title"
+              :href="`https://${tech[t].projectUrl}`"
+              target="_blank"
+            >
+              <img v-for="t of project.tech" :key="tech[t].title"
+                :src="`https://badgen.net/badge/icon/${tech[t].title}?icon=${tech[t].icon}${tech[t].color}&label`"
+                :height="20"
+                class="ma-1"
+              />
+            </a>
+            -->
+
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
+definePageMeta({
+  id: 3,
+  pageTransition: {
+    name: 'slide',
+    mode: 'out-in'
+  }
+})
+
 import { badgen } from 'badgen'
 import { siAndroid, siAmazonaws, siMicrosoftazure, siFirebase, siGithub,
   siHeroku, siCoffeescript, siYoutubegaming, siMysql, siNuxtdotjs, siPhp,

@@ -31,6 +31,14 @@
 </template>
 
 <script>
+definePageMeta({
+  id: 1,
+  pageTransition: {
+    name: 'slide',
+    mode: 'out-in'
+  }
+})
+
 export default {
   name: 'IndexPage'
 }

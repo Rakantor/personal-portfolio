@@ -59,6 +59,14 @@
 </template>
 
 <script>
+definePageMeta({
+  id: 2,
+  pageTransition: {
+    name: 'slide',
+    mode: 'out-in'
+  }
+})
+
 import _groupBy from 'lodash-es/groupBy'
 
 export default {
