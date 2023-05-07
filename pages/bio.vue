@@ -1,61 +1,63 @@
 <template>
-  <v-row>
-    <v-col cols="12">
-      <span class="text-h5 text-md-h4 text-high-emphasis">
-        {{ $t('bioTitle') }}
-      </span>
-    </v-col>
-    <v-col cols="12">
-      <v-sheet color="transparent" class="text-medium-emphasis">
-        <i18n-t keypath="bioBody" tag="p">
-          <template v-slot:mmorpg>
-            <NuxtLink :href="mmorpgWikiUrl" target="_blank">MMORPG</NuxtLink>
-          </template>
-          <template v-slot:htl>
-            <NuxtLink :href="htlWikiUrl" target="_blank">HTL</NuxtLink>
-          </template>
-          <template v-slot:bi>
-            <NuxtLink :href="biWikiUrl" target="_blank">{{ $t('bi') }}</NuxtLink>
-          </template>
-          <template v-slot:yearsOfExp>
-            {{ yearsOfExp }}
-          </template>
-        </i18n-t>
-        <br/>
-        <p>{{ $t('bioSubtitle') }}</p>
-      </v-sheet>
-    </v-col>
-    <v-col v-for="set, ind in sets" :key="ind" cols="12">
-      <v-card>
-        <v-card-item>
-          <v-card-title>{{ $t(set.title) }}</v-card-title>
-        </v-card-item>
-        <v-card-text class="text-center">
-          <v-row>
-            <v-col v-for="(v, i) in set.data" :key="i" cols="12">
-              <v-row justify="center">
-                <v-col cols="auto" v-for="(value, index) in v" :key="index">
-                  <v-btn
-                    variant="text"
-                    :size="brandIconSize(value.emphasis)"
-                    color="primary"
-                    class="mx-1"
-                    :href="`https://${value.url}`"
-                    target="_blank"
-                  >
-                    <v-icon :icon="value.icon" :size="brandIconSize(value.emphasis) - 10"></v-icon>
-                  </v-btn>
-                  <span class="text-overline text-primary d-flex flex-column ma-0 pa-0">
-                    {{ value.title }}
-                  </span>
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-card-text>
-      </v-card>
-    </v-col>
-  </v-row>
+  <div class="page-content">
+    <v-row>
+      <v-col cols="12">
+        <span class="text-h5 text-md-h4 text-high-emphasis">
+          {{ $t('bioTitle') }}
+        </span>
+      </v-col>
+      <v-col cols="12">
+        <v-sheet color="transparent" class="text-medium-emphasis">
+          <i18n-t keypath="bioBody" tag="p">
+            <template v-slot:mmorpg>
+              <NuxtLink :href="mmorpgWikiUrl" target="_blank">MMORPG</NuxtLink>
+            </template>
+            <template v-slot:htl>
+              <NuxtLink :href="htlWikiUrl" target="_blank">HTL</NuxtLink>
+            </template>
+            <template v-slot:bi>
+              <NuxtLink :href="biWikiUrl" target="_blank">{{ $t('bi') }}</NuxtLink>
+            </template>
+            <template v-slot:yearsOfExp>
+              {{ yearsOfExp }}
+            </template>
+          </i18n-t>
+          <br/>
+          <p>{{ $t('bioSubtitle') }}</p>
+        </v-sheet>
+      </v-col>
+      <v-col v-for="set, ind in sets" :key="ind" cols="12">
+        <v-card>
+          <v-card-item>
+            <v-card-title>{{ $t(set.title) }}</v-card-title>
+          </v-card-item>
+          <v-card-text class="text-center">
+            <v-row>
+              <v-col v-for="(v, i) in set.data" :key="i" cols="12">
+                <v-row justify="center">
+                  <v-col cols="auto" v-for="(value, index) in v" :key="index">
+                    <v-btn
+                      variant="text"
+                      :size="brandIconSize(value.emphasis)"
+                      color="primary"
+                      class="mx-1"
+                      :href="`https://${value.url}`"
+                      target="_blank"
+                    >
+                      <v-icon :icon="value.icon" :size="brandIconSize(value.emphasis) - 10"></v-icon>
+                    </v-btn>
+                    <span class="text-overline text-primary d-flex flex-column ma-0 pa-0">
+                      {{ value.title }}
+                    </span>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>

@@ -33,6 +33,12 @@ p a {
     }
 }
 
+.page-content {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .v-overlay__scrim {
     background: rgb(var(--v-theme-background)) !important;
     opacity: 0.9 !important;
