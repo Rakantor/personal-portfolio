@@ -38,10 +38,10 @@
           :title="project.title"
           :subtitle="project.subtitle"
           :description="project.description"
+          :overline="project.overline"
           :tech="project.tech"
           :images="project.images"
-          :project-url="project.projectUrl"
-          :repo-url="project.repoUrl"
+          :links="project.links"
         />
       </v-col>
     </v-row>
@@ -57,6 +57,8 @@ definePageMeta({
   }
 })
 
+const runtimeConfig = useRuntimeConfig()
+
 export default {
   name: 'PortfolioPage',
   data: () => ({
@@ -70,8 +72,10 @@ export default {
         title: 'Torii SRS (v2-beta)',
         subtitle: 'Progressive Web App (SPA)',
         description: 'toriiWeb',
-        tech: ['vue2', 'vuetify2', 'mysql', 'php', 'aws', 'azure', 'watson', 'heroku'],
-        projectUrl: 'beta.torii-srs.com',
+        tech: ['js', 'vue', 'vuetify', 'mysql', 'php', 'aws', 'azure', 'watson', 'heroku'],
+        links: [
+          { url: 'beta.torii-srs.com', icon: 'mdi-open-in-new' }
+        ],
         images: [
           'torii-v2-01.jpg', 'torii-v2-03.jpg', 'torii-v2-04.jpg',
           'torii-v2-05.jpg', 'torii-v2-06.jpg', 'torii-v2-07.jpg',
@@ -82,8 +86,11 @@ export default {
         title: 'Torii SRS (v1)',
         subtitle: 'Cross-Platform App',
         description: 'toriiJava',
+        overline: 'toriiInfo',
         tech: ['java', 'libgdx', 'mysql', 'php', 'aws', 'wordpress'],
-        projectUrl: 'torii-srs.com',
+        links: [
+          { url: 'torii-srs.com', icon: 'mdi-open-in-new' }
+        ],
         images: [
           'torii-v1-1.jpg', 'torii-v1-2.png', 'torii-v1-3.png',
           'torii-v1-4.png', 'torii-v1-5.png', 'torii-v1-6.png'
@@ -93,9 +100,12 @@ export default {
         title: 'IU Quiz App',
         subtitle: 'Web App (SPA)',
         description: 'iuQuizApp',
-        tech: ['nuxt2', 'vuetify2', 'firebase'],
-        repoUrl: 'github.com/Rakantor/iu-quiz-app',
-        projectUrl: 'iu-quiz-app.web.app',
+        tech: ['js', 'vue', 'nuxt', 'vuetify', 'firebase'],
+        links: [
+          { url: 'iu-quiz-app.web.app', icon: 'mdi-open-in-new' },
+          { url: 'github.com/Rakantor/iu-quiz-app', icon: 'mdi-github' },
+          { url: `${runtimeConfig.public.cdn}iu-quiz-app-projektbericht.pdf`, icon: 'mdi-file-pdf-box' }
+        ],
         images: ['iu-quiz-app-2.jpg']
       },
       {
@@ -109,9 +119,11 @@ export default {
         title: 'Personal Website',
         subtitle: 'Web App (SPA)',
         description: 'personalWebsite',
-        tech: ['nuxt3', 'vuetify3', 'ghpages'],
-        repoUrl: 'github.com/Rakantor/personal-portfolio',
-        projectUrl: 'mave.dev',
+        tech: ['ts', 'vue', 'nuxt', 'vuetify', 'ghpages'],
+        links: [
+          { url: 'mave.dev', icon: 'mdi-open-in-new' },
+          { url: 'github.com/Rakantor/personal-portfolio', icon: 'mdi-github' }
+        ],
         images: ['personal-website-1.jpg'],
       },
       {
@@ -119,12 +131,17 @@ export default {
         subtitle: 'Android App',
         description: 'iuGamerApp',
         tech: ['java', 'android', 'firebase'],
-        repoUrl: 'github.com/Rakantor/iubh-gamer-app',
+        links: [
+          { url: 'github.com/Rakantor/iubh-gamer-app', icon: 'mdi-github' }
+        ],
         images: ['iu-gamer-app-1.jpg', 'iu-gamer-app-2.jpg']
       }
     ]
   }),
   computed: {
+    cdn () {
+      return this.$config.public.cdn
+    },
     viewCols () {
       const horizontal = {
         cols: 12,

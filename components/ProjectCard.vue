@@ -14,7 +14,7 @@
             height="200"
           >
             <v-carousel-item v-for="image of images" :key="image"
-              :src="`${cdn}${image}`"
+              :src="`https://${$config.public.cdn}${image}`"
               cover
               @click="showImageCarousel"
             ></v-carousel-item>
@@ -23,36 +23,22 @@
       </v-card-text>
       <div class="d-flex flex-column" style="width: 100%;">
         <v-card-item>
+          <span v-if="overline" class="text-overline text-primary">{{ $t(overline) }}</span>
           <v-card-title class="d-flex font-weight-bold">
-            <span v-if="projectUrl">
-              <a :href="`https://${projectUrl}`" target="_blank" class="link">
-                {{ title }}
-              </a>
-            </span>
-            <span v-else-if="repoUrl">
-              <a :href="`https://${repoUrl}`" target="_blank" class="link">
+            <span v-if="links.length > 0">
+              <a :href="`https://${links[0].url}`" target="_blank" class="link">
                 {{ title }}
               </a>
             </span>
             <span v-else>{{ title }}</span>
             <v-spacer></v-spacer>
             <v-btn
-              v-if="repoUrl"
+              v-for="link in [...links].reverse()" :key="link.url"
               variant="text"
-              icon="mdi-github"
+              :icon="link.icon"
               density="comfortable"
               color="on-surface"
-              :href="`https://${repoUrl}`"
-              target="_blank"
-              class="link"
-            />
-            <v-btn
-              v-if="projectUrl"
-              variant="text"
-              icon="mdi-open-in-new"
-              density="comfortable"
-              color="on-surface"
-              :href="`https://${projectUrl}`"
+              :href="`https://${link.url}`"
               target="_blank"
               class="link"
             />
@@ -81,41 +67,27 @@
       height="auto"
     >
       <v-carousel-item v-for="image of images" :key="image"
-        :src="`${cdn}${image}`"
+        :src="`https://${$config.public.cdn}${image}`"
         @click="showImageCarousel"
       ></v-carousel-item>
     </v-carousel>
     <v-card-item>
+      <span v-if="overline" class="text-overline text-primary">{{ $t(overline) }}</span>
       <v-card-title class="d-flex font-weight-bold">
-        <span v-if="projectUrl">
-          <a :href="`https://${projectUrl}`" target="_blank" class="link">
-            {{ title }}
-          </a>
-        </span>
-        <span v-else-if="repoUrl">
-          <a :href="`https://${repoUrl}`" target="_blank" class="link">
+        <span v-if="links.length > 0">
+          <a :href="`https://${links[0].url}`" target="_blank" class="link">
             {{ title }}
           </a>
         </span>
         <span v-else>{{ title }}</span>
         <v-spacer></v-spacer>
         <v-btn
-          v-if="repoUrl"
+          v-for="link in [...links].reverse()" :key="link.url"
           variant="text"
-          icon="mdi-github"
+          :icon="link.icon"
           density="comfortable"
           color="on-surface"
-          :href="`https://${repoUrl}`"
-          target="_blank"
-          class="link"
-        />
-        <v-btn
-          v-if="projectUrl"
-          variant="text"
-          icon="mdi-open-in-new"
-          density="comfortable"
-          color="on-surface"
-          :href="`https://${projectUrl}`"
+          :href="`https://${link.url}`"
           target="_blank"
           class="link"
         />
@@ -160,7 +132,7 @@
 import { badgen } from 'badgen'
 import { siAndroid, siAmazonaws, siMicrosoftazure, siFirebase, siGithub,
   siHeroku, siCoffeescript, siYoutubegaming, siMysql, siNuxtdotjs, siPhp,
-  siVuedotjs, siVuetify, siIbmwatson, siWordpress } from 'simple-icons'
+  siJavascript, siVuedotjs, siVuetify, siIbmwatson, siWordpress, siTypescript } from 'simple-icons'
 
 export default {
   name: 'PortfolioPage',
@@ -172,13 +144,21 @@ export default {
     title: String,
     subtitle: String,
     description: String,
-    tech: Array,
-    images: Array,
-    projectUrl: String,
-    repoUrl: String,
+    overline: String,
+    tech: {
+      type: Array,
+      default: []
+    },
+    images: {
+      type: Array,
+      default: []
+    },
+    links: {
+      type: Array,
+      default: []
+    }
   },
   data: () => ({
-    cdn: 'https://d29l6egdxvgg9c.cloudfront.net/',
     technologies: {
       android: { title: 'Android', color: '3DDC84', icon: siAndroid },
       aws: { title: 'AWS', color: '232F3E', icon: siAmazonaws },
@@ -187,14 +167,14 @@ export default {
       ghpages: { title: 'GH Pages', color: '222222', icon: siGithub },
       heroku: { title: 'Heroku', color: '430098', icon: siHeroku },
       java: { title: 'Java', color: 'FF7800', icon: siCoffeescript },
+      js: { title: 'JavaScript', color: 'F7DF1E', icon: siJavascript },
       libgdx: { title: 'libGDX', color: '990000', icon: siYoutubegaming },
       mysql: { title: 'MySQL', color: '4479A1', icon: siMysql },
-      nuxt2: { title: 'Nuxt 2', color: '00DC82', icon: siNuxtdotjs },
-      nuxt3: { title: 'Nuxt 3', color: '00DC82', icon: siNuxtdotjs },
+      nuxt: { title: 'Nuxt', color: '00DC82', icon: siNuxtdotjs },
       php: { title: 'PHP', color: '777BB4', icon: siPhp },
-      vue2: { title: 'Vue', color: '4FC08D', icon: siVuedotjs },
-      vuetify2: { title: 'Vuetify', color: '1867C0', icon: siVuetify },
-      vuetify3: { title: 'Vuetify', color: '1867C0', icon: siVuetify },
+      ts: { title: 'TypeScript', color: '3178C6', icon: siTypescript },
+      vue: { title: 'Vue', color: '4FC08D', icon: siVuedotjs },
+      vuetify: { title: 'Vuetify', color: '1867C0', icon: siVuetify },
       watson: { title: 'Watson', color: 'BE95FF', icon: siIbmwatson },
       wordpress: { title: 'WordPress', color: '21759B', icon: siWordpress }
     },
@@ -220,7 +200,7 @@ export default {
       return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`
     },
     showImageCarousel () {
-      this.$refs.imageCarousel.images = this.images.map(i => this.cdn+i)
+      this.$refs.imageCarousel.images = this.images.map(i => `https://${this.$config.public.cdn+i}`)
       this.$refs.imageCarousel.index = this.carouselIndex
       this.$refs.imageCarousel.show = true
     }
