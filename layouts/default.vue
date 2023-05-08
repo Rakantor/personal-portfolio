@@ -28,7 +28,7 @@
             outlined
             color="primary"
             prepend-icon="mdi-email-outline"
-            :href="`mailto:<${$myEmail}>`"
+            :href="`mailto:<${$config.public.myEmail}>`"
           >
             Contact
           </v-btn>
@@ -46,7 +46,7 @@
           <img src="~/assets/avatar_blueish.png" width="55" />
         </v-avatar>
       </template>
-      <!-- v-app-bar-title class="text-subtitle-1" v-text="$myName" /-->
+      <!-- v-app-bar-title class="text-subtitle-1" v-text="$config.public.myName" /-->
       <v-spacer />
       <v-app-bar-nav-icon
         v-if="smAndDown"
@@ -56,7 +56,7 @@
         <v-btn :ripple="false" to="/">{{ $t('headerHome') }}</v-btn>
         <v-btn :ripple="false" to="/bio">{{ $t('headerAbout') }}</v-btn>
         <v-btn :ripple="false" to="/portfolio">{{ $t('headerWork') }}</v-btn>
-        <v-btn :ripple="false" :href="`mailto:<${$myEmail}>`">{{ $t('headerContact') }}</v-btn>
+        <v-btn :ripple="false" :href="`mailto:<${$config.public.myEmail}>`">{{ $t('headerContact') }}</v-btn>
       </v-btn-toggle>
     </v-app-bar>
     <v-main>
@@ -86,7 +86,7 @@
           </v-col>
           <v-col cols="4" class="text-center my-auto">
             <span class="text-caption text-no-wrap">
-              &copy; {{ new Date().getFullYear() }} {{ $myName }}
+              &copy; {{ new Date().getFullYear() }} {{ $config.public.myName }}
             </span>
           </v-col>
           <v-col cols="4" class="my-auto" :class="$vuetify.display.mobile ? 'text-right' : 'text-center'">

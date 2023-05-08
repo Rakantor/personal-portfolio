@@ -6,9 +6,9 @@
     </v-card-item>
     <v-card-text>
       <strong>Medieninhaber:</strong><br />
-      {{ $myName }}<br />
+      {{ $config.public.myName }}<br />
       Wien, Österreich<br />
-      {{ $myEmail }}<br />
+      {{ $config.public.myEmail }}<br />
     </v-card-text>
     <v-card-text>
       Zweck dieser Website: Präsentation des Medieninhabers.
@@ -46,11 +46,11 @@
     <p>Sollten Sie Fragen zum Datenschutz oder zur Verarbeitung personenbezogener Daten haben, finden Sie nachfolgend die
       Kontaktdaten der verantwortlichen Person bzw. Stelle:<br />
       <span style="font-weight: 400">
-        {{ $myName }}<br />
+        {{ $config.public.myName }}<br />
         Wien, Österreich
       </span>
       <br />
-      E-Mail: <a :href="`mailto:${$myEmail}`">{{ $myEmail }}</a>
+      E-Mail: <a :href="`mailto:${$config.public.myEmail}`">{{ $config.public.myEmail }}</a>
     </p>
     <h2 id="rechte-dsgvo">Rechte laut Datenschutz-Grundverordnung</h2>
     <p>Gemäß Artikel 13, 14 DSGVO informieren wir Sie über die folgenden Rechte, die Ihnen zustehen, damit es zu einer

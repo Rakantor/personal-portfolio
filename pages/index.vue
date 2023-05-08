@@ -22,7 +22,7 @@
         variant="outlined"
         color="primary"
         prepend-icon="mdi-email-outline"
-        :href="`mailto:<${$myEmail}>`"
+        :href="`mailto:<${$config.public.myEmail}>`"
       >
         {{ $t('getInTouch') }}
       </v-btn>
