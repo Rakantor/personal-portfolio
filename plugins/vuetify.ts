@@ -71,8 +71,4 @@ export default defineNuxtPlugin(nuxtApp => {
   })
 
   nuxtApp.vueApp.use(vuetify)
-
-  // Define global variables
-  nuxtApp.provide('myName', 'Manuel Veigel')
-  nuxtApp.provide('myEmail', 'maveigel@gmail.com')
 })

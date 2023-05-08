@@ -2,6 +2,13 @@ import vuetify from 'vite-plugin-vuetify'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      cdn: 'd29l6egdxvgg9c.cloudfront.net/',
+      myName: 'Manuel Veigel',
+      myEmail: 'maveigel@gmail.com',
+    }
+  },
   ssr: false,
   css: [
     'vuetify/styles',
