@@ -12,10 +12,9 @@
   "devDependencies": {
     "@mdi/font": "^7.0.96",
     "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge",
-    "nuxt": "^3.4.0"
+    "nuxt": "^3.4.3"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.13.6",
     "badgen": "^3.2.2",
     "lodash-es": "^4.17.21",
     "sass": "^1.56.0",
