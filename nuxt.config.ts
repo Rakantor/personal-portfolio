@@ -47,17 +47,15 @@ export default defineNuxtConfig({
   plugins: [],
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
-    // ['@nuxtjs/axios', { proxyHeaders: false }],
-    [
-      '@nuxtjs/i18n',
-      { vueI18n: './i18n.config.ts' }
-    ],
+    '@nuxtjs/i18n',
     async (options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', config =>
         // @ts-ignore
         config.plugins.push(vuetify())
       )
     }
-  ]
+  ],
+  i18n: {
+    vueI18n: './i18n.config.ts'
+  }
 })
