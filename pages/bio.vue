@@ -102,7 +102,8 @@ export default {
       { title: 'Firebase', icon: 'mdi-firebase', url: 'firebase.google.com', emphasis: 'high' },
       { title: 'Azure', icon: 'mdi-microsoft-azure', url: 'azure.microsoft.com', emphasis: 'low' },
       { title: 'Heroku', icon: 'brands:heroku', url: 'heroku.com', emphasis: 'low' },
-      { title: 'WordPress', icon: 'mdi-wordpress', url: 'wordpress.com', emphasis: 'low' },
+      { title: 'Docker', icon: 'mdi-docker', url: 'docker.com', emphasis: 'low' },
+      // { title: 'WordPress', icon: 'mdi-wordpress', url: 'wordpress.com', emphasis: 'low' },
       { title: 'Unity', icon: 'mdi-unity', url: 'unity.com', emphasis: 'low' },
       { title: 'Unreal Engine', icon: 'mdi-unreal', url: 'unrealengine.com', emphasis: 'low' }
     ],
