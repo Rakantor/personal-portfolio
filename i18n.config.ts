@@ -34,7 +34,7 @@ export default defineI18nConfig(() => ({
         The focus is particularly on working together and playing/learning together.\
         Similar to the popular app Quizduel, students can, but do not have to, play against each other.',
       lang: 'Languages',
-      languagesFrameworks: 'Languages & Frameworks',
+      languagesFrameworks: 'Languages, Frameworks & Libraries',
       os: 'Operating Systems',
       personalWebsite: 'My first portfolio website.',
       pmb: 'A 2D game inspired by the 2000s Pokémon games. Built from scratch!\
@@ -42,7 +42,7 @@ export default defineI18nConfig(() => ({
         custom maps built in Tiled, game sound, 3 difficulty levels and so much more.',
       portfolio: 'portfolio',
       portfolioTitle: 'Some of my projects',
-      toolsPlatforms: 'Tools & Platforms',
+      toolsPlatforms: 'Technologies & Tools',
       toriiInfo: '20,000+ registered users!',
       toriiJava: 'A Japanese vocabulary learning tool that harnesses the power of spaced repetition\
         to make memorizing new words a breeze. It combines a straightforward interface with robust features.\
@@ -89,7 +89,7 @@ export default defineI18nConfig(() => ({
         Das miteinander bzw. das gemeinsame Spielen/Erarbeiten steht dabei besonders im Fokus.\
         Ähnlich wie bei der populären App Quizduell kann, jedoch muss nicht gegeneinander gespielt werden.',
       lang: 'Sprachen',
-      languagesFrameworks: 'Sprachen & Frameworks',
+      languagesFrameworks: 'Sprachen, Frameworks & Bibliotheken',
       os: 'Betriebssysteme',
       personalWebsite: 'Meine erste Portfolio-Website.',
       pmb: 'Ein 2D Game, inspiriert von den Pokémon Game Boy Spielen der 2000er.\
@@ -97,7 +97,7 @@ export default defineI18nConfig(() => ({
         einzigartige Maps erstellt mit Tiled, Sound, 3 Schwierigkeitsstufen und jede Menge mehr.',
       portfolio: 'Portfolio',
       portfolioTitle: 'Ausgewählte Projekte',
-      toolsPlatforms: 'Tools & Plattformen',
+      toolsPlatforms: 'Technologien & Tools',
       toriiInfo: '20.000+ registrierte Benutzer!',
       toriiJava: 'Eine japanische Vokabeltrainer-App, die die Spaced Repetition Lernmethode nutzt, um\
         den Lernprozess neuer Wörter so effektiv und effizient wie möglich zu gestalten.\
