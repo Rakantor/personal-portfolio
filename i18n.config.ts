@@ -4,13 +4,14 @@ export default defineI18nConfig(() => ({
   messages: {
     en: {
       bi: 'BI', // Business Informatics
-      bioBody: 'My interest in programming was sparked in 2007 when I began tinkering with SQL\
-        in an attempt to setup a private server for my favorite {mmorpg} (it was a success!)\
+      bioBody: 'My passion for programming ignited in 2007, as I delved into SQL in an attempt to set up\
+        a private server for my favorite {mmorpg} - a venture that proved successful.\
         Eager to dive deeper into the world of coding, I attended a {htl}\
-        specializing in IT in 2009, where I learned C, Java, HTML and CSS.\
-        Some years later, I pursued a degree in {bi} with a specialization\
-        in Web and App development. I have acquired the majority of my knowledge through self-teaching\
-        while working on personal projects over the past ~{yearsOfExp} years.',
+        specializing in IT in 2009, where I learned the basics of C, Java, HTML and CSS.\
+        Some years later, I took my passion further by heading to university, where I got my degree in {bi},\
+        specializing in web and mobile app development.\
+        Over the past {yearsOfExp} years, self-study and hands-on experience with personal projects\
+        have been the cornerstone of my learning journey.',
       bioTitle: 'My Journey as a Developer',
       bioSubtitle: 'Here\'s some of the tech that I\'ve worked with before:',
       getInTouch: 'Get in touch',
@@ -19,9 +20,9 @@ export default defineI18nConfig(() => ({
       headerContact: 'Contact',
       headerHome: 'Home',
       headerWork: 'Projects',
-      introduction: 'I\'m a Software Developer based in Vienna, Austria.\
-        I develop various types of applications.\
-        Explore my {portfolio} to view a showcase of my projects.',
+      introduction: 'I\'m a Software Developer from Vienna, Austria.\
+        I have a passion for crafting a wide range of applications.\
+        Feel free to explore my {portfolio} to see some of my projects.',
       imprint: 'Imprint',
       iuGamerApp: 'An Android app designed to help a group of board game enthusiasts\
         better organize their regular evening game sessions.\
@@ -41,30 +42,30 @@ export default defineI18nConfig(() => ({
         Features include animated NPCs, objects and battles (including online multiplayer),\
         custom maps built in Tiled, game sound, 3 difficulty levels and so much more.',
       portfolio: 'portfolio',
-      portfolioTitle: 'Some of my projects',
+      portfolioTitle: 'Featured Projects',
       toolsPlatforms: 'Technologies & Tools',
-      toriiInfo: '20,000+ registered users!',
+      toriiInfo: '25,000+ registered users!',
       toriiJava: 'A Japanese vocabulary learning tool that harnesses the power of spaced repetition\
         to make memorizing new words a breeze. It combines a straightforward interface with robust features.\
         Designed for both casual learners and those preparing for the Japanese Language Proficiency Test (JLPT),\
         Torii offers specialized vocabulary lists and review methods.\
         Key features include audio reviews, font randomization, progress tracking,\
         and automatic cloud synchronization.',
-      toriiWeb: 'Version 2 of my Japanese vocabulary learning tool brings significant enhancements\
-        over its predecessor. New features include offline functionality (thanks to utilizing IndexedDB),\
-        an integrated dictionary for single-click word addition,\
-        additional review methods for learned words,\
-        a review forecast chart for planning study sessions,\
-        and improved word search and statistics for better user insights.'
+      toriiWeb: 'Version 2 of my Japanese vocabulary learning tool introduces significant enhancements.\
+        Offline functionality is now available (through the utilization of IndexedDB).\
+        The web app features an integrated dictionary for efficient word addition,\
+        expanded review methods for enhancing vocabulary retention,\
+        a review forecast chart for effective study session planning,\
+        and enhancements to the word search and statistics functions for improved user insights.'
     },
     de: {
       bi: 'WI', // Wirtschaftsinformatik
       bioBody: 'Den Einstieg in die Programmierung habe ich 2007 gemacht, als ich mich mit SQL beschäftigt habe,\
-        in dem Versuch, einen Privatserver für mein Lieblings-{mmorpg} aufzusetzen (erfolgreich!)\
+        in dem Versuch, einen Privatserver für mein Lieblings-{mmorpg} aufzusetzen - mit Erfolg.\
         Nach dem Gymnasium habe ich mich 2009 dazu entschlossen, eine auf IT spezialisierte {htl} zu besuchen,\
         wo ich die Grundlagen in C, Java, HTML and CSS gelernt habe.\
-        Ein paar Jahre später habe ich {bi} studiert - Wahlpflichtfächer Web- und App-Development.\
-        Den Großteil meines Wissens habe ich mir im Zuge persönlicher Projekte in den letzten ~{yearsOfExp} Jahren\
+        Ein paar Jahre später habe ich {bi} studiert - Wahlpflichtfächer Web- und Mobile-App-Development.\
+        Den Großteil meines Wissens habe ich mir im Zuge persönlicher Projekte in den letzten {yearsOfExp} Jahren\
         autodidaktisch angeeignet.',
       bioTitle: 'Mein Werdegang als Developer',
       bioSubtitle: 'Einige der Technologien, mit denen ich gearbeitet habe:',
@@ -98,7 +99,7 @@ export default defineI18nConfig(() => ({
       portfolio: 'Portfolio',
       portfolioTitle: 'Ausgewählte Projekte',
       toolsPlatforms: 'Technologien & Tools',
-      toriiInfo: '20.000+ registrierte Benutzer!',
+      toriiInfo: '25.000+ registrierte Benutzer!',
       toriiJava: 'Eine japanische Vokabeltrainer-App, die die Spaced Repetition Lernmethode nutzt, um\
         den Lernprozess neuer Wörter so effektiv und effizient wie möglich zu gestalten.\
         Die App verbindet eine simple Benutzeroberfläche mit leistungsstarken Funktionen.\
@@ -107,12 +108,12 @@ export default defineI18nConfig(() => ({
         Japanese Language Proficiency Test (JLPT).\
         Zu den wichtigsten Funktionen zählen Audio-Reviews, Font-Randomization, Progress-Tracking,\
         und automatische Cloud-Synchronisation.',
-      toriiWeb: `Version 2 meiner Vokabeltrainer-App bringt bedeutende Verbesserungen\
-        gegenüber seinem Vorgänger. Neue Funktionen umfassen Offline-Funktionalität (dank der Nutzung von IndexedDB),\
-        ein integriertes Wörterbuch für das Hinzufügen neuer Wörter mit nur einem Klick,\
-        zusätzliche Überprüfungsmethoden für gelernte Vokabeln,\
-        ein Vorschau-Diagramm zur Planung von Lernsessions sowie\
-        verbesserte Wortsuche und Statistiken.`
+      toriiWeb: `Version 2 meiner Vokabeltrainer-App bietet deutliche Verbesserungen im Vergleich zur\
+        vorherigen Version. Zu den neuen Funktionen zählen die Offline-Nutzung durch Einsatz von IndexedDB,\
+        ein integriertes Wörterbuch, das das Hinzufügen neuer Wörter mit einem einzigen Klick ermöglicht,\
+        erweiterte Überprüfungsoptionen für bereits gelernte Vokabeln,\
+        ein Vorschau-Diagramm zur effektiven Planung von Lerneinheiten sowie optimierte Funktionen für\
+        die Wortsuche und Statistiken zur besseren Nachverfolgung des Lernfortschritts.`
     }
   }
 }))

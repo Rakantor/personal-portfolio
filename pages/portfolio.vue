@@ -69,7 +69,7 @@ export default {
     },
     projects: [
       {
-        title: 'Torii SRS (v2-beta)',
+        title: 'Torii SRS (v2)',
         subtitle: 'Progressive Web App (SPA)',
         description: 'toriiWeb',
         tech: ['js', 'vue', 'vuetify', 'mysql', 'php', 'aws', 'azure', 'watson', 'heroku'],
