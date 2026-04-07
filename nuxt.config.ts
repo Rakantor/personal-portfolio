@@ -56,6 +56,10 @@ export default defineNuxtConfig({
     }
   ],
   i18n: {
-    vueI18n: './i18n.config.ts'
+    restructureDir: false,
+    vueI18n: './i18n.config.ts',
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
   }
 })

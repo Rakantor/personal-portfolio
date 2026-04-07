@@ -1,12 +1,11 @@
-import { createVuetify, ThemeDefinition  } from 'vuetify'
+import { createVuetify } from 'vuetify'
+import type { ThemeDefinition } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { md3 } from 'vuetify/blueprints'
 import '@mdi/font/css/materialdesignicons.css'
 import { mdi } from 'vuetify/iconsets/mdi'
 import { brands } from '~/iconsets/brands'
-// @ts-expect-error Missing type definitions
-import colors from 'vuetify/lib/util/colors'
 
 const myCustomDarkTheme: ThemeDefinition = {
   dark: true,
